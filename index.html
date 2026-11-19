@@ -1,0 +1,530 @@
+<title>Guia Fotográfico de Árvores de Divinópolis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: guia de campo — faixa de cabeçalho cor de mata, navegação fixa, seções empilhadas; chave de múltiplas entradas no topo */
+:root{
+  --paper:#F1F4EE; --surface:#FFFFFF; --ink:#1B2620; --muted:#59665D; --line:#D3DBD0;
+  --moss:#2F5D37; --moss-soft:#E1EBDD; --ipe:#C38B0E;
+  --band:#1E3826; --band-ink:#EEF3EA; --band-muted:#B5C8B4;
+  --leaf:#7FA86C; --leaf-ink:#2C4B2B;
+  --f-amarela:#E2B21C; --f-rosa:#D2659A; --f-branca:#F7F7F1; --f-vermelha:#CF4630; --f-azul:#7480D4; --f-inconspicua:#A7B1A6;
+  --o-nr:#2F6B3A; --o-nb:#3D6E8F; --o-ex:#7A6A55; --o-inv:#B23A2B;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Source Sans 3",ui-sans-serif,system-ui,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#111813; --surface:#19221C; --ink:#E5EBE3; --muted:#9BA89E; --line:#2D3A31;
+  --moss:#8CC28C; --moss-soft:#22322A; --ipe:#EDBE45;
+  --band:#0C140F; --band-ink:#E8EFE5; --band-muted:#94AC95;
+  --leaf:#6E9A5E; --leaf-ink:#C3DDB9;
+  --f-branca:#E9EAE2; --f-inconspicua:#6E786E;
+  --o-nr:#86C38A; --o-nb:#8DBEDD; --o-ex:#C9B79C; --o-inv:#F08A78;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111813; --surface:#19221C; --ink:#E5EBE3; --muted:#9BA89E; --line:#2D3A31;
+  --moss:#8CC28C; --moss-soft:#22322A; --ipe:#EDBE45;
+  --band:#0C140F; --band-ink:#E8EFE5; --band-muted:#94AC95;
+  --leaf:#6E9A5E; --leaf-ink:#C3DDB9;
+  --f-branca:#E9EAE2; --f-inconspicua:#6E786E;
+  --o-nr:#86C38A; --o-nb:#8DBEDD; --o-ex:#C9B79C; --o-inv:#F08A78;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700}
+h3{font-size:1.1rem;font-weight:700}
+p{margin:0}
+a{color:var(--moss)}
+em,.sci{font-style:italic}
+.label{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--ipe);outline-offset:2px}
+
+header.top{background:var(--band);color:var(--band-ink)}
+header.top .wrap{padding-block:40px 32px;display:grid;gap:14px}
+header.top h1{font-size:clamp(2rem,5.5vw,3.4rem);font-weight:700;max-width:18ch}
+header.top p{color:var(--band-muted);max-width:68ch}
+header.top .meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-family:var(--mono);font-size:.78rem;color:var(--band-muted)}
+header.top .meta b{color:var(--band-ink);font-weight:500}
+
+nav.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;padding-block:6px;scrollbar-width:thin}
+nav.tabs a{white-space:nowrap;text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:6px;font-weight:600;font-size:.95rem}
+nav.tabs a:hover{background:var(--moss-soft);color:var(--ink)}
+
+section{padding-block:44px 8px}
+section > .wrap{display:grid;gap:18px}
+.lede{color:var(--muted);max-width:72ch}
+.note{border:1px solid var(--line);border-left:4px solid var(--ipe);background:var(--surface);padding:14px 16px;border-radius:4px;max-width:80ch}
+.note p+p{margin-top:6px}
+
+/* chave */
+.keypanel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:16px}
+.kgroup{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.kgroup legend{padding:0;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:6px 12px;font-size:.92rem;line-height:1.2}
+.chip svg{width:26px;height:26px;flex:none}
+.chip[aria-pressed="true"]{background:var(--moss);border-color:var(--moss);color:var(--surface)}
+.chip[aria-pressed="true"] .lf{fill:var(--surface);stroke:var(--surface)}
+.chip[aria-pressed="true"] .ax{stroke:var(--surface)}
+.dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line);flex:none}
+.keybar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.keybar input{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:8px 12px;min-width:0;width:min(100%,340px)}
+.btn{border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:8px 14px;font-weight:600;font-size:.92rem}
+.btn:hover{border-color:var(--moss)}
+.count{font-family:var(--mono);font-size:.85rem;color:var(--muted)}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:10px;align-content:start;min-width:0}
+.card .hd{display:grid;grid-template-columns:58px 1fr;gap:12px;align-items:start}
+.card .hd svg{width:58px;height:58px;background:var(--paper);border-radius:6px}
+.card h3{font-size:1.12rem}
+.card .sci{font-size:.95rem}
+.card .fam{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.03em}
+.card p{font-size:.94rem}
+.card .k{font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:.76rem;font-family:var(--mono);border:1px solid var(--line);border-radius:4px;padding:2px 7px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
+.ori{font-weight:500;border-color:currentColor}
+.ori-nr{color:var(--o-nr)} .ori-nb{color:var(--o-nb)} .ori-ex{color:var(--o-ex)} .ori-inv{color:var(--o-inv)}
+.warn{color:var(--o-inv);font-weight:600}
+.card a.ext{font-size:.88rem;font-weight:600}
+.empty{padding:28px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px}
+
+/* tabela */
+.tablebox{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:980px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--paper);position:sticky;top:0;cursor:pointer;white-space:nowrap}
+th[aria-sort="ascending"]::after{content:" ▲"} th[aria-sort="descending"]::after{content:" ▼"}
+td.n{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--moss-soft)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.86rem;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+
+/* fenologia */
+.phen{min-width:640px}
+.phen td,.phen th{padding:3px 4px;border-bottom:1px solid var(--line)}
+.phen th{cursor:default;text-align:center;position:static}
+.phen th:first-child{text-align:left}
+.phen td:first-child{white-space:nowrap;padding-right:12px;font-size:.88rem}
+.phen td.m{width:6.5%}
+.phen .bar{height:16px;border-radius:3px}
+.phen .bar.on{border:1px solid rgba(0,0,0,.12)}
+
+/* morfologia */
+.morph{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.mcard{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:start;min-width:0}
+.mcard svg{width:72px;height:72px}
+.mcard p{font-size:.9rem;color:var(--muted)}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px;max-width:80ch}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start}
+.steps li::before{content:counter(s);font-family:var(--mono);font-weight:500;background:var(--moss);color:var(--surface);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:.85rem}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.cols > div{min-width:0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:8px}
+.box ul{margin:0;padding-left:1.1em;display:grid;gap:4px;font-size:.94rem}
+.refs{display:grid;gap:10px;max-width:90ch;padding-left:1.2em;margin:0}
+.refs li{font-size:.94rem}
+footer{padding-block:40px;color:var(--muted);font-size:.85rem}
+
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.gal figure{margin:0;display:grid;gap:3px;min-width:0}
+.gal button{padding:0;border:0;background:var(--paper);border-radius:5px;overflow:hidden;aspect-ratio:1;display:block;width:100%}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal figcaption{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.gal .nofoto{aspect-ratio:1;border:1px dashed var(--line);border-radius:5px;display:grid;place-items:center;font-size:.72rem;color:var(--muted);text-align:center;padding:4px}
+.lb{position:fixed;inset:0;z-index:20;background:rgba(8,12,9,.88);display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+[hidden],.lb[hidden]{display:none!important}
+.lb figure{margin:0;display:grid;gap:8px;max-width:min(900px,100%);justify-items:center}
+.lb img{max-height:78vh;max-width:100%;border-radius:6px}
+.lb figcaption{color:#E8EFE5;font-size:.9rem;text-align:center}
+.lb figcaption a{color:#F0C75A}
+.lb .x{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:calc(12px + env(safe-area-inset-right,0px));background:#E8EFE5;color:#111813;border:0;border-radius:6px;padding:8px 14px;font-weight:600}
+.lf{fill:var(--leaf);stroke:var(--leaf-ink);stroke-width:1.1;stroke-linejoin:round}
+.ax{stroke:var(--leaf-ink);stroke-width:1.8;fill:none;stroke-linecap:round}
+.vn{stroke:var(--leaf-ink);stroke-width:.7;fill:none;opacity:.7}
+.trunk{fill:var(--leaf-ink)}
+.frond{stroke:var(--leaf);stroke-width:3;fill:none;stroke-linecap:round}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--moss)}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="label" style="color:var(--band-muted)">Guia de campo · Censo da arborização viária</span>
+    <h1>Árvores de rua de Divinópolis-MG</h1>
+    <p>Espécies esperadas em calçadas e canteiros centrais do município, num contexto de Mata Atlântica (floresta estacional semidecidual) em transição para o Cerrado. Use a chave visual para chegar ao nome a partir do que você vê na árvore.</p>
+    <div class="meta"><span><b id="nsp">53</b> espécies ou grupos</span><span><b>Censo</b> · vias laterais e canteiros centrais</span><span>Compilado em <b>nov/2026</b></span></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Seções">
+  <div class="wrap">
+    <a href="#chave">Chave visual</a>
+    <a href="#tabela">Tabela de espécies</a>
+    <a href="#fenologia">Calendário de floração</a>
+    <a href="#morfologia">Como ler a folha</a>
+    <a href="#censo">Protocolo do censo</a>
+    <a href="#referencias">Referências</a>
+  </div>
+</nav>
+
+<section id="chave">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Chave de múltiplas entradas</span>
+      <h2>Do que você vê até o nome</h2>
+      <p class="lede">Marque só o que você tem certeza, em qualquer ordem. Dentro de um grupo, mais de uma opção amplia a busca; os sinais marcantes precisam estar todos presentes. Na dúvida entre simples e composta, veja <a href="#morfologia">como ler a folha</a>.</p>
+    </div>
+    <div class="note">
+      <p><strong>Não existe inventário arbóreo publicado para Divinópolis.</strong> Em março de 2025 a Secretaria de Meio Ambiente informou à Câmara que o município não tem Plano de Arborização Urbana nem levantamento atualizado da cobertura vegetal. Esta lista reúne as espécies citadas para a Regional Oeste de MG (Arcos, Divinópolis, Formiga, Itaúna e Pará de Minas), as mais frequentes em inventários viários mineiros e as nativas da região usadas em plantios urbanos. Espere encontrar espécies fora da lista.</p>
+    </div>
+    <div class="keypanel" id="keypanel"></div>
+    <div class="keybar">
+      <input id="q" type="search" placeholder="Buscar por nome popular, científico ou família" aria-label="Buscar espécie">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <span class="count" id="count"></span>
+        <button class="btn" id="reset" type="button">Limpar seleção</button>
+      </div>
+    </div>
+    <div class="cards" id="cards"></div>
+  </div>
+</section>
+
+<section id="tabela">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Lista de referência</span>
+      <h2>Tabela de espécies</h2>
+      <p class="lede">Clique no cabeçalho para ordenar. O botão copia a tabela separada por ponto e vírgula, pronta para colar no Excel ou na planilha de campo.</p>
+    </div>
+    <div class="keybar">
+      <div class="legend">
+        <span><span class="tag ori ori-nr">Nativa</span> nativa da região</span>
+        <span><span class="tag ori ori-nb">Nativa BR</span> nativa de outra região do Brasil</span>
+        <span><span class="tag ori ori-ex">Exótica</span></span>
+        <span><span class="tag ori ori-inv">Invasora</span> exótica invasora</span>
+        <span>Porte: P até 5 m · M 5–10 m · G acima de 10 m</span>
+      </div>
+      <button class="btn" id="copycsv" type="button">Copiar tabela (CSV)</button>
+    </div>
+    <textarea id="csvfallback" hidden readonly style="width:100%;height:160px;font-family:var(--mono);font-size:.8rem;background:var(--surface);color:var(--ink);border:1px solid var(--line)"></textarea>
+    <div class="tablebox"><table id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
+  </div>
+</section>
+
+<section id="fenologia">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Fenologia aproximada · Sudeste do Brasil</span>
+      <h2>Calendário de floração</h2>
+      <p class="lede">A floração resolve muitas dúvidas: na mesma rua, o ipê-roxo floresce antes do ipê-amarelo, e a sibipiruna (primavera) antes da canafístula (verão). As épocas variam de um ano para outro e entre indivíduos, então use como indicação.</p>
+    </div>
+    <div class="tablebox"><table class="phen" id="phen"></table></div>
+  </div>
+</section>
+
+<section id="morfologia">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Morfologia foliar</span>
+      <h2>Como ler a folha</h2>
+      <p class="lede">A maior parte das identificações começa pela folha. Estes são os tipos usados na chave.</p>
+    </div>
+    <div class="morph" id="morph"></div>
+    <div class="cols">
+      <div class="box">
+        <h3>Folha ou folíolo?</h3>
+        <p style="font-size:.94rem">Procure a <strong>gema axilar</strong>, o brotinho no ângulo entre o pecíolo e o ramo. A folha inteira tem gema na base; o folíolo não. Se as “folhinhas” caem todas juntas presas a um eixo comum (a raque), é uma folha composta. Folíolos ficam todos no mesmo plano; folhas verdadeiras costumam sair em vários planos ao redor do ramo.</p>
+      </div>
+      <div class="box">
+        <h3>Roteiro de identificação em campo</h3>
+        <ol class="steps">
+          <li><span>É palmeira (estipe sem galhos, folhas no topo)?</span></li>
+          <li><span>A folha é simples ou composta? Se composta: pinada, bipinada, digitada ou com 2–3 folíolos.</span></li>
+          <li><span>As folhas são alternas ou opostas no ramo?</span></li>
+          <li><span>Quebre um pecíolo e amasse uma folha: há látex? há cheiro?</span></li>
+          <li><span>Olhe o tronco e os ramos: espinhos, acúleos, descamação, anéis.</span></li>
+          <li><span>Flores e frutos, quando houver: cor, forma e época.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="censo">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Método</span>
+      <h2>Protocolo do censo</h2>
+      <p class="lede">No censo cada indivíduo arbóreo das calçadas e canteiros centrais é registrado. Sugestão de variáveis e de rotina, baseada nos manuais de arborização citados nas referências. Ajuste ao termo de referência do contrato.</p>
+    </div>
+    <div class="cols">
+      <div class="box">
+        <h3>Ficha por indivíduo</h3>
+        <ul>
+          <li><strong>Identificação:</strong> código único, data, equipe.</li>
+          <li><strong>Localização:</strong> coordenadas GPS, bairro, logradouro, número de referência, lado da via, <em>calçada</em> ou <em>canteiro central</em>.</li>
+          <li><strong>Espécie:</strong> nome popular e científico; se houver dúvida, “morfoespécie” + foto + amostra.</li>
+          <li><strong>Dendrometria:</strong> CAP a 1,30 m (ou DAP), altura total, altura da 1ª bifurcação, diâmetro de copa (dois eixos).</li>
+          <li><strong>Fitossanidade:</strong> boa / regular / ruim / morta; cupins, brocas, fungos, erva-de-passarinho, injúrias mecânicas, cavidades.</li>
+          <li><strong>Conflitos:</strong> rede elétrica (primária/secundária), iluminação, sinalização, fachadas, calçada levantada pelas raízes, meio-fio.</li>
+          <li><strong>Entorno:</strong> largura da calçada, área livre (canteiro) em volta do colo, afastamento de esquinas e garagens.</li>
+          <li><strong>Manejo indicado:</strong> nenhum, poda (tipo), remoção, substituição, ampliação de canteiro.</li>
+          <li><strong>Fotos:</strong> árvore inteira, tronco, folha (frente e verso), flor ou fruto.</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Boas práticas</h3>
+        <ul>
+          <li>Defina e registre o critério de inclusão antes de começar, por exemplo DAP ≥ 5 cm ou altura ≥ 1,5 m. Mudas abaixo do critério podem ser contadas à parte.</li>
+          <li>Em árvores com vários fustes abaixo de 1,30 m, meça todos e calcule o DAP equivalente.</li>
+          <li>Palmeiras: anote altura do estipe; em touceiras (areca), conte a touceira como um indivíduo e informe o número de estipes.</li>
+          <li>Leve tesoura de poda alta ou podão para coletar ramos férteis de árvores altas. Prense amostras duvidosas para conferir depois.</li>
+          <li>Fotografe as dúvidas e confira no iNaturalist e na Flora e Funga do Brasil; em caso de espécie protegida, a confirmação por especialista é recomendada.</li>
+          <li><strong>Ipê-amarelo e pequizeiro são imunes de corte em MG</strong> (Lei Estadual 20.308/2012). Destaque essas árvores no relatório.</li>
+          <li>Percorra a cidade por quadras, sempre no mesmo sentido, e numere sequencialmente para não pular nem repetir indivíduos.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="referencias">
+  <div class="wrap">
+    <div style="display:grid;gap:8px">
+      <span class="label">Bibliografia</span>
+      <h2>Referências</h2>
+    </div>
+    <ol class="refs">
+      <li>Diagnóstico da arborização viária sob a rede elétrica na Regional Oeste de Minas Gerais (Arcos, Divinópolis, Formiga, Itaúna e Pará de Minas). <em>Pesquisa Florestal Brasileira</em> (Embrapa). Espécies mais frequentes: sibipiruna, ligustro, champaca e aroeira-salsa. <a href="https://pfb.sede.embrapa.br/pfb/article/download/749/464" target="_blank" rel="noopener">pfb.sede.embrapa.br</a></li>
+      <li>Câmara Municipal de Divinópolis. Requerimento 824/2025 e resposta da Secretaria de Meio Ambiente sobre cobertura vegetal e ausência de Plano de Arborização. <a href="https://sapl.divinopolis.mg.leg.br/media/sapl/public/materialegislativa/2025/41793/requerimento_824_2025.pdf" target="_blank" rel="noopener">sapl.divinopolis.mg.leg.br</a> · <a href="https://sapl.divinopolis.mg.leg.br/docadm/texto_integral/3196" target="_blank" rel="noopener">ofício</a></li>
+      <li>Câmara Municipal de Divinópolis. Projeto de Lei CM 165/2025, Política Municipal de Arborização Urbana. <a href="https://sapl.divinopolis.mg.leg.br/media/sapl/public/materialegislativa/2025/42821/projeto_de_lei_municipal_cm_165-2025.pdf" target="_blank" rel="noopener">sapl.divinopolis.mg.leg.br</a></li>
+      <li>Arborização viária sob rede elétrica em Minas Gerais: espécies mais podadas por conflito com fiação (oiti, ligustro, sibipiruna). <em>Revista da Sociedade Brasileira de Arborização Urbana</em> (REVSBAU). <a href="https://revistas.ufpr.br/revsbau/article/download/65444/38647/264245" target="_blank" rel="noopener">revistas.ufpr.br</a></li>
+      <li>Arborização viária em Ouro Fino (MG): análise de conflitos e propostas de manejo. REVSBAU. <a href="https://revistas.ufpr.br/revsbau/article/view/101407" target="_blank" rel="noopener">revistas.ufpr.br</a></li>
+      <li>LORENZI, H. <em>Árvores brasileiras: manual de identificação e cultivo de plantas arbóreas nativas do Brasil</em>. Vols. 1–3. Nova Odessa: Instituto Plantarum.</li>
+      <li>LORENZI, H. et al. <em>Árvores exóticas no Brasil: madeireiras, ornamentais e aromáticas</em>. Nova Odessa: Instituto Plantarum, 2003.</li>
+      <li>GONÇALVES, E. G.; LORENZI, H. <em>Morfologia vegetal: organografia e dicionário ilustrado de morfologia das plantas vasculares</em>. 2. ed. São Paulo: Instituto Plantarum, 2011.</li>
+      <li>SOUZA, V. C.; LORENZI, H. <em>Botânica sistemática</em>. 3. ed. Nova Odessa: Instituto Plantarum, 2012.</li>
+      <li>CEMIG. <em>Manual de arborização</em>. Belo Horizonte: CEMIG / Fundação Biodiversitas, 2011.</li>
+      <li>MILANO, M. S.; DALCIN, E. <em>Arborização de vias públicas</em>. Rio de Janeiro: Light, 2000.</li>
+      <li>MINAS GERAIS. Lei nº 20.308, de 27 de julho de 2012: declara o pequizeiro e o ipê-amarelo de preservação permanente, de interesse comum e imunes de corte.</li>
+      <li>Flora e Funga do Brasil. Jardim Botânico do Rio de Janeiro. Nomenclatura e distribuição das espécies. <a href="https://floradobrasil.jbrj.gov.br" target="_blank" rel="noopener">floradobrasil.jbrj.gov.br</a></li>
+      <li>iNaturalist. Observações de grau de pesquisa (fotos das fichas), anotadas por fenologia: com flor, com fruto e sem flor. <a href="https://www.inaturalist.org" target="_blank" rel="noopener">inaturalist.org</a></li>
+      <li>EMBRAPA. Manual para elaboração do Plano Municipal de Arborização Urbana. <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/942537/1/2013SergioAManualPMARB.pdf" target="_blank" rel="noopener">infoteca.cnptia.embrapa.br</a></li>
+    </ol>
+  </div>
+</section>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada"><button class="x" id="lbx" type="button">Fechar</button><figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure></div>
+
+<footer><div class="wrap">Fotos: observações de grau de pesquisa do iNaturalist, sob licenças CC0, CC BY, CC BY-SA e CC BY-NC, com autoria indicada ao ampliar cada imagem. Fotos CC BY-NC não podem ser usadas para fins comerciais. Cada foto é a primeira de uma observação marcada no iNaturalist como “sem flor”, “com flor” ou “com fruto”; a foto “sem flor” pode mostrar folhas, tronco ou a árvore inteira. Abra a observação para ver as demais fotos.<br>Nomes científicos conforme a Flora e Funga do Brasil, com sinônimos antigos indicados quando ainda aparecem em manuais e inventários. As épocas de floração são aproximadas para o Sudeste.</div></footer>
+
+<script>
+const SP=[
+{pop:"Sibipiruna",sci:"Cenostigma pluviosum (DC.) Gagnon & G.P.Lewis",sin:"Caesalpinia pluviosa; Poincianella pluviosa",fam:"Fabaceae",ori:"nr",porte:"G",folha:["bipinada"],filo:"alterna",flor:"amarela",m:[9,10,11],tr:["casca"],diag:"Folhas bipinadas com folíolos pequenos e verde-escuros. Tronco que descama em placas, deixando manchas. Cachos eretos de flores amarelas acima da copa na primavera; vagem achatada e escura que se abre torcendo.",conf:"Canafístula (floresce no verão, brotos ferrugíneos) e pau-ferro (tronco liso e branco manchado).",obs:"Espécie mais frequente na Regional Oeste de MG (≈30% dos indivíduos sob rede elétrica). Muito podada por conflito com fiação.",q:"Cenostigma pluviosum"},
+{pop:"Oiti",sci:"Moquilea tomentosa (Benth.) Fritsch",sin:"Licania tomentosa",fam:"Chrysobalanaceae",ori:"nb",porte:"G",folha:["simples"],filo:"alterna",flor:"inconspicua",m:[6,7,8],tr:[],diag:"Folhas simples, coriáceas, ovado-elípticas; face inferior esbranquiçada e aveludada, ramos jovens com pelos ferrugíneos. Copa densa e arredondada, verde-escura o ano todo. Fruto carnoso amarelo, de cheiro forte quando maduro.",conf:"Ficus (tem látex) e mangueira (folhas lanceoladas com cheiro de manga).",obs:"Das mais plantadas em vias de MG. Frutos sujam calçadas e veículos.",q:"Moquilea tomentosa"},
+{pop:"Ligustro, alfeneiro",sci:"Ligustrum lucidum W.T.Aiton",sin:"",fam:"Oleaceae",ori:"inv",porte:"M",folha:["simples"],filo:"oposta",flor:"branca",m:[11,12,1],tr:[],diag:"Folhas simples, opostas, ovadas, glabras e muito brilhantes, sem cheiro ao amassar. Panículas terminais de florzinhas brancas de perfume forte. Frutos pequenos roxo-escuros em cachos, muito procurados por aves.",conf:"Jambolão e outras Myrtaceae, também opostas, mas com pontos translúcidos e cheiro ao amassar.",obs:"Invasora de matas no Sul e Sudeste. Segunda espécie mais frequente na Regional Oeste. Pólen alergênico.",q:"Ligustrum lucidum"},
+{pop:"Magnólia-amarela, champaca",sci:"Magnolia champaca (L.) Baill. ex Pierre",sin:"Michelia champaca",fam:"Magnoliaceae",ori:"ex",porte:"G",folha:["simples"],filo:"alterna",flor:"amarela",m:[8,9,10,11,12],tr:["anel","cheiro"],diag:"Folhas simples, alternas, lanceoladas, de ápice alongado. Cicatriz em anel da estípula em volta do ramo, em cada nó. Flores amarelo-alaranjadas muito perfumadas nas axilas.",conf:"Mangueira (sem cicatriz anelar, cheiro de manga).",obs:"Citada entre as mais frequentes na Regional Oeste. Porte grande para calçadas estreitas.",q:"Magnolia champaca"},
+{pop:"Aroeira-salsa, aroeira-mole",sci:"Schinus molle L.",sin:"",fam:"Anacardiaceae",ori:"nb",porte:"M",folha:["pinada"],filo:"alterna",flor:"inconspicua",m:[8,9,10,11],tr:["cheiro"],diag:"Folhas pinadas pendentes, com muitos folíolos estreitos e lineares; aspecto de chorão. Cheiro de pimenta ao amassar. Cachos pendentes de frutinhos rosados.",conf:"Aroeira-pimenteira (folíolos mais largos e menos numerosos, copa não pendente).",obs:"Nativa do Sul do Brasil e dos Andes; frequente na Regional Oeste.",q:"Schinus molle"},
+{pop:"Aroeira-pimenteira",sci:"Schinus terebinthifolia Raddi",sin:"Schinus terebinthifolius",fam:"Anacardiaceae",ori:"nr",porte:"M",folha:["pinada"],filo:"alterna",flor:"branca",m:[9,10,11,12,1],tr:["cheiro","glan"],diag:"Folhas imparipinadas com 5 a 15 folíolos; a raque costuma ser alada. Cheiro resinoso ao amassar. Frutos vermelhos brilhantes (pimenta-rosa) em cachos no outono-inverno.",conf:"Aroeira-salsa; murta (cheiro cítrico, folíolos brilhantes, sem raque alada).",obs:"Pode causar dermatite em pessoas sensíveis.",q:"Schinus terebinthifolia"},
+{pop:"Ipê-amarelo",sci:"Handroanthus spp. (H. serratifolius, H. ochraceus, H. chrysotrichus)",sin:"Tabebuia spp.",fam:"Bignoniaceae",ori:"nr",porte:"G",folha:["digitada"],filo:"oposta",flor:"amarela",m:[7,8,9],tr:[],diag:"Folhas opostas, compostas digitadas com 5 folíolos (3 a 7). Floração amarela intensa no inverno com a árvore sem folhas. Fruto cápsula longa e cilíndrica com sementes aladas.",conf:"Ipê-roxo (flor rosa) e ipê-branco (3 folíolos). H. ochraceus e H. chrysotrichus têm pelos ferrugíneos; H. serratifolius é quase glabro, com folíolos serreados.",obs:"IMUNE DE CORTE em MG (Lei 20.308/2012). Identifique até espécie quando possível.",q:"Handroanthus"},
+{pop:"Ipê-roxo",sci:"Handroanthus impetiginosus (Mart. ex DC.) Mattos",sin:"Tabebuia impetiginosa; inclui H. heptaphyllus",fam:"Bignoniaceae",ori:"nr",porte:"G",folha:["digitada"],filo:"oposta",flor:"rosa",m:[6,7,8],tr:[],diag:"Folhas opostas digitadas com 5 a 7 folíolos de margem levemente serreada. Floração rosa-arroxeada no inverno, sem folhas. Cápsula cilíndrica longa.",conf:"Ipê-amarelo fora da floração; paineira (também rosa, mas folhas alternas e tronco com acúleos).",obs:"Floresce antes do ipê-amarelo, o que ajuda a separá-los na mesma rua.",q:"Handroanthus impetiginosus"},
+{pop:"Ipê-branco",sci:"Tabebuia roseoalba (Ridl.) Sandwith",sin:"",fam:"Bignoniaceae",ori:"nr",porte:"M",folha:["digitada"],filo:"oposta",flor:"branca",m:[8,9,10],tr:[],diag:"Folhas opostas digitadas, geralmente com 3 folíolos verde-acinzentados. Floração branca, às vezes levemente rosada, curta e sincronizada, sem folhas.",conf:"Outros ipês, que têm 5 ou mais folíolos.",obs:"Porte médio; boa opção para calçadas.",q:"Tabebuia roseoalba"},
+{pop:"Ipê-de-jardim, amarelinho",sci:"Tecoma stans (L.) Juss. ex Kunth",sin:"",fam:"Bignoniaceae",ori:"inv",porte:"P",folha:["pinada"],filo:"oposta",flor:"amarela",m:[2,3,4,5,9,10,11,12],tr:[],diag:"Folhas opostas pinadas, com 5 a 13 folíolos lanceolados e serreados. Flores amarelas em forma de sino, em cachos, quase o ano todo. Cápsula estreita e achatada como uma vagem.",conf:"Ipê-amarelo (folha digitada, floração só no inverno); espatódea (flores laranja-avermelhadas).",obs:"Invasora agressiva de áreas abertas e pastagens.",q:"Tecoma stans"},
+{pop:"Jacarandá-mimoso",sci:"Jacaranda mimosifolia D.Don",sin:"",fam:"Bignoniaceae",ori:"ex",porte:"G",folha:["bipinada"],filo:"oposta",flor:"azul",m:[9,10,11],tr:[],diag:"Folhas opostas bipinadas, com folíolos miúdos (aspecto de samambaia). Flores azul-lilás tubulares em panículas na primavera. Fruto lenhoso, arredondado e achatado, como uma castanhola.",conf:"Sibipiruna, flamboyant e outras bipinadas, que são todas alternas.",obs:"",q:"Jacaranda mimosifolia"},
+{pop:"Quaresmeira",sci:"Pleroma granulosum (Desr.) D.Don",sin:"Tibouchina granulosa",fam:"Melastomataceae",ori:"nr",porte:"M",folha:["simples"],filo:"oposta",flor:"rosa",m:[12,1,2,3,6,7,8],tr:["nerv"],diag:"Folhas simples, opostas, ásperas, com 3 a 5 nervuras longitudinais saindo da base (padrão típico de Melastomataceae). Ramos jovens quadrangulares. Flores grandes roxas ou rosadas.",conf:"Manacá-da-serra (Pleroma mutabile), de flores que passam de brancas a roxas.",obs:"Nativa da Mata Atlântica, muito usada em calçadas.",q:"Pleroma granulosum"},
+{pop:"Resedá, extremosa",sci:"Lagerstroemia indica L.",sin:"",fam:"Lythraceae",ori:"ex",porte:"P",folha:["simples"],filo:"oposta",flor:"rosa",m:[12,1,2,3],tr:["casca"],diag:"Folhas simples pequenas, opostas a subopostas, sem cheiro. Tronco liso e manchado, descamando em placas finas. Flores crespas rosa, lilás, vermelhas ou brancas no verão.",conf:"Goiabeira (folhas maiores, com cheiro e nervuras bem marcadas).",obs:"Frequente sob fiação pelo porte pequeno.",q:"Lagerstroemia indica"},
+{pop:"Murta",sci:"Murraya paniculata (L.) Jack",sin:"",fam:"Rutaceae",ori:"ex",porte:"P",folha:["pinada"],filo:"alterna",flor:"branca",m:[9,10,11,12,1,2,3],tr:["cheiro"],diag:"Folhas pinadas com 3 a 9 folíolos pequenos, verde-escuros e muito brilhantes. Cheiro cítrico ao amassar; contra a luz, pontos translúcidos. Flores brancas perfumadas; frutos vermelho-alaranjados.",conf:"Aroeira-pimenteira (cheiro resinoso, frutos em cachos densos).",obs:"Hospedeira do psilídeo que transmite o greening dos citros. Muitas vezes é arbustiva: registre só se atingir o critério de inclusão.",q:"Murraya paniculata"},
+{pop:"Flamboyant",sci:"Delonix regia (Bojer ex Hook.) Raf.",sin:"",fam:"Fabaceae",ori:"ex",porte:"G",folha:["bipinada"],filo:"alterna",flor:"vermelha",m:[10,11,12,1],tr:[],diag:"Folhas bipinadas grandes, de folíolos miúdos. Copa larga em guarda-sol. Flores vermelho-alaranjadas grandes no início do verão. Vagem lenhosa e escura, de até 60 cm.",conf:"Sibipiruna (flores amarelas, vagem curta) e jacarandá-mimoso (folha oposta).",obs:"Raízes superficiais que danificam calçadas.",q:"Delonix regia"},
+{pop:"Espatódea, bisnagueira",sci:"Spathodea campanulata P.Beauv.",sin:"",fam:"Bignoniaceae",ori:"inv",porte:"G",folha:["pinada"],filo:"oposta",flor:"vermelha",m:[5,6,7,8,9],tr:[],diag:"Folhas opostas, pinadas e grandes, com 9 a 19 folíolos. Botões em forma de bisnaga que acumulam água. Flores grandes em sino, laranja-avermelhadas, no alto da copa.",conf:"Ipê-de-jardim (flores amarelas e menores).",obs:"Exótica invasora. Há estudos que associam o néctar à morte de abelhas nativas.",q:"Spathodea campanulata"},
+{pop:"Leucena",sci:"Leucaena leucocephala (Lam.) de Wit",sin:"",fam:"Fabaceae",ori:"inv",porte:"M",folha:["bipinada"],filo:"alterna",flor:"branca",m:[9,10,11,12,1,2,3],tr:["glan"],diag:"Folhas bipinadas com folíolos pequenos e uma glândula no pecíolo. Flores em pompons brancos globosos. Vagens achatadas e marrons em cachos densos, presentes quase o ano todo.",conf:"Angico (porte maior, casca rugosa, vagem mais larga).",obs:"Invasora. A prefeitura relatou em 2025 a substituição de leucenas por nativas nas margens do rio Itapecerica.",q:"Leucaena leucocephala"},
+{pop:"Fícus, figueira-benjamina",sci:"Ficus benjamina L. / Ficus microcarpa L.f.",sin:"",fam:"Moraceae",ori:"ex",porte:"G",folha:["simples"],filo:"alterna",flor:"inconspicua",m:[],tr:["latex","anel"],diag:"Folhas simples, alternas e brilhantes; F. benjamina tem ápice longo e ramos pendentes, F. microcarpa tem folhas obovadas e raízes aéreas. Látex branco ao quebrar o pecíolo. Cicatriz anelar da estípula nos ramos. Figos pequenos nas axilas.",conf:"Oiti (sem látex, face inferior aveludada).",obs:"Raízes agressivas: anote danos em calçada, meio-fio e redes.",q:"Ficus benjamina"},
+{pop:"Mangueira",sci:"Mangifera indica L.",sin:"",fam:"Anacardiaceae",ori:"ex",porte:"G",folha:["simples"],filo:"alterna",flor:"inconspicua",m:[7,8,9],tr:["cheiro","latex"],diag:"Folhas simples, lanceoladas e coriáceas, agrupadas na ponta dos ramos; brotações novas avermelhadas. Cheiro de manga ao amassar; seiva resinosa. Panículas terminais de flores miúdas.",conf:"Champaca (cicatriz anelar no ramo) e oiti (face inferior aveludada).",obs:"Comum em ruas antigas. Frutos caem sobre veículos e pedestres.",q:"Mangifera indica"},
+{pop:"Pata-de-vaca (exótica), bauínia",sci:"Bauhinia variegata L.",sin:"",fam:"Fabaceae",ori:"ex",porte:"M",folha:["bilobada"],filo:"alterna",flor:"rosa",m:[5,6,7,8],tr:["nerv"],diag:"Folha simples dividida em dois lobos arredondados, com nervuras saindo da base. Ramos sem espinhos. Flores grandes rosa-lilás (brancas na var. candida), parecidas com orquídeas.",conf:"Pata-de-vaca nativa, que tem espinhos e flores brancas de pétalas estreitas.",obs:"",q:"Bauhinia variegata"},
+{pop:"Pata-de-vaca (nativa)",sci:"Bauhinia forficata Link",sin:"",fam:"Fabaceae",ori:"nr",porte:"M",folha:["bilobada"],filo:"alterna",flor:"branca",m:[10,11,12,1],tr:["espinho","nerv"],diag:"Folha bilobada com lobos pontiagudos. Espinhos curtos e pareados na base das folhas. Flores brancas com pétalas longas e estreitas.",conf:"Bauhinia variegata (sem espinhos, flores rosa e largas).",obs:"",q:"Bauhinia forficata"},
+{pop:"Cássia-imperial, chuva-de-ouro",sci:"Cassia fistula L.",sin:"",fam:"Fabaceae",ori:"ex",porte:"M",folha:["pinada"],filo:"alterna",flor:"amarela",m:[11,12,1],tr:[],diag:"Folhas pinadas com 4 a 8 pares de folíolos grandes (8–15 cm), sem folíolo terminal. Cachos pendentes e longos de flores amarelas. Vagem cilíndrica e preta, de até 60 cm.",conf:"Fedegoso (Senna macranthera), de folíolos menores, cachos eretos e vagem mais fina.",obs:"",q:"Cassia fistula"},
+{pop:"Pau-ferro",sci:"Libidibia ferrea (Mart. ex Tul.) L.P.Queiroz",sin:"Caesalpinia ferrea",fam:"Fabaceae",ori:"nr",porte:"G",folha:["bipinada"],filo:"alterna",flor:"amarela",m:[10,11,12],tr:["casca"],diag:"Tronco liso e claro, com grandes manchas brancas e cinza-esverdeadas; reconhecível à distância. Folhas bipinadas de folíolos pequenos. Flores amarelas pequenas; vagem curta, dura e escura.",conf:"Sibipiruna (descama em placas escuras, flores em cachos vistosos).",obs:"Porte grande; raízes podem levantar calçadas.",q:"Libidibia ferrea"},
+{pop:"Sete-copas, chapéu-de-sol",sci:"Terminalia catappa L.",sin:"",fam:"Combretaceae",ori:"ex",porte:"G",folha:["simples"],filo:"alterna",flor:"inconspicua",m:[8,9,10,11],tr:[],diag:"Ramos em andares horizontais. Folhas grandes e obovadas, reunidas na ponta dos ramos, que ficam vermelhas antes de cair. Fruto achatado como uma amêndoa.",conf:"Chapéu-de-sol é nome popular usado para mais de uma espécie; confira pela folha e pelos andares de ramos.",obs:"Também chamada amendoeira-da-praia.",q:"Terminalia catappa"},
+{pop:"Palmeira-imperial",sci:"Roystonea oleracea (Jacq.) O.F.Cook",sin:"também R. regia",fam:"Arecaceae",ori:"ex",porte:"G",folha:["palmeira"],filo:"—",flor:"inconspicua",m:[],tr:[],diag:"Estipe único, liso, cinza-claro e muito alto, com um palmito verde e liso logo abaixo das folhas. Folhas pinadas grandes.",conf:"Seafórtia (menor, estipe fino, cachos de frutos vermelhos).",obs:"Em palmeiras, registre altura do estipe; o DAP tem pouca variação.",q:"Roystonea oleracea"},
+{pop:"Jerivá",sci:"Syagrus romanzoffiana (Cham.) Glassman",sin:"",fam:"Arecaceae",ori:"nr",porte:"G",folha:["palmeira"],filo:"—",flor:"inconspicua",m:[],tr:[],diag:"Estipe único, cinza, com cicatrizes em anel e restos de bainhas no topo. Folíolos em vários planos, dando aspecto plumoso. Cachos de coquinhos alaranjados.",conf:"Seafórtia (folíolos num só plano, palmito verde).",obs:"Nativa; frutos alimentam a fauna.",q:"Syagrus romanzoffiana"},
+{pop:"Macaúba",sci:"Acrocomia aculeata (Jacq.) Lodd. ex Mart.",sin:"",fam:"Arecaceae",ori:"nr",porte:"G",folha:["palmeira"],filo:"—",flor:"inconspicua",m:[],tr:["espinho"],diag:"Estipe único coberto por espinhos longos e escuros ou por bases de folhas velhas. Folhas plumosas com espinhos na raque. Frutos globosos verde-amarelados.",conf:"Jerivá (sem espinhos).",obs:"Típica do Cerrado e das áreas de transição em MG.",q:"Acrocomia aculeata"},
+{pop:"Areca-bambu",sci:"Dypsis lutescens (H.Wendl.) Beentje & J.Dransf.",sin:"",fam:"Arecaceae",ori:"ex",porte:"P",folha:["palmeira"],filo:"—",flor:"inconspicua",m:[],tr:[],diag:"Palmeira em touceira, com vários estipes finos, amarelados e anelados como bambu. Pecíolos amarelados.",conf:"",obs:"Conte a touceira como um indivíduo e anote o número de estipes.",q:"Dypsis lutescens"},
+{pop:"Seafórtia, palmeira-real-australiana",sci:"Archontophoenix cunninghamiana (H.Wendl.) H.Wendl. & Drude",sin:"",fam:"Arecaceae",ori:"inv",porte:"G",folha:["palmeira"],filo:"—",flor:"rosa",m:[],tr:[],diag:"Estipe único, fino e anelado; palmito verde-oliva sob a copa. Folíolos num só plano. Cachos de flores lilás e frutos vermelhos abaixo do palmito.",conf:"Palmeira-imperial (estipe grosso e cinza-claro) e jerivá (folíolos em vários planos).",obs:"Invasora em fragmentos de Mata Atlântica.",q:"Archontophoenix cunninghamiana"},
+{pop:"Pitangueira",sci:"Eugenia uniflora L.",sin:"",fam:"Myrtaceae",ori:"nr",porte:"P",folha:["simples"],filo:"oposta",flor:"branca",m:[8,9,10,11],tr:["cheiro","casca"],diag:"Folhas simples, opostas, pequenas e brilhantes, com pontos translúcidos e cheiro forte ao amassar; brotos avermelhados. Tronco liso e descamante. Fruto vermelho com 7 a 8 gomos.",conf:"Outras Myrtaceae (jabuticabeira, jambolão, goiabeira).",obs:"",q:"Eugenia uniflora"},
+{pop:"Goiabeira",sci:"Psidium guajava L.",sin:"",fam:"Myrtaceae",ori:"ex",porte:"M",folha:["simples"],filo:"oposta",flor:"branca",m:[9,10,11],tr:["cheiro","casca"],diag:"Folhas opostas e oblongas, com nervuras paralelas bem marcadas; cheiro ao amassar. Tronco liso, marrom-esverdeado, descamando em lâminas finas. Ramos novos quadrangulares.",conf:"Resedá (folhas menores, sem cheiro).",obs:"Exótica naturalizada; muitas vezes espontânea.",q:"Psidium guajava"},
+{pop:"Jabuticabeira",sci:"Plinia cauliflora (Mart.) Kausel",sin:"Myrciaria cauliflora",fam:"Myrtaceae",ori:"nr",porte:"M",folha:["simples"],filo:"oposta",flor:"branca",m:[7,8,9],tr:["cheiro","casca"],diag:"Folhas pequenas, opostas e lanceoladas; brotos rosados. Tronco liso, manchado e descamante. Flores e frutos nascem direto no tronco e nos ramos grossos.",conf:"Pitangueira (fruto com gomos nos ramos finos).",obs:"",q:"Plinia cauliflora"},
+{pop:"Jambolão",sci:"Syzygium cumini (L.) Skeels",sin:"",fam:"Myrtaceae",ori:"ex",porte:"G",folha:["simples"],filo:"oposta",flor:"branca",m:[9,10,11],tr:["cheiro"],diag:"Folhas opostas, grandes, coriáceas e glabras, com nervura marginal e cheiro de terebintina ao amassar. Frutos roxo-escuros e ovoides que mancham calçadas e carros.",conf:"Ligustro (folhas menores, sem cheiro, frutos menores).",obs:"Exótica com potencial invasor.",q:"Syzygium cumini"},
+{pop:"Ingá",sci:"Inga spp. (I. vera, I. edulis, I. laurina)",sin:"",fam:"Fabaceae",ori:"nr",porte:"M",folha:["pinada"],filo:"alterna",flor:"branca",m:[8,9,10,11],tr:["glan"],diag:"Folhas pinadas pares com 2 a 7 pares de folíolos; raque alada em várias espécies e glândulas em forma de taça entre os pares. Flores brancas com muitos estames longos, como pincel. Vagem com polpa branca adocicada.",conf:"Fedegoso e cássias (sem raque alada, flores amarelas).",obs:"Comum perto de córregos e fundos de vale.",q:"Inga"},
+{pop:"Angico",sci:"Anadenanthera colubrina (Vell.) Brenan",sin:"inclui A. peregrina",fam:"Fabaceae",ori:"nr",porte:"G",folha:["bipinada"],filo:"alterna",flor:"branca",m:[9,10,11],tr:["glan","espinho"],diag:"Folhas bipinadas com muitos folíolos miúdos e lineares; glândula no pecíolo. Tronco escuro, de casca rugosa, às vezes com cristas e acúleos. Flores em bolinhas branco-creme. Vagem achatada e marrom.",conf:"Leucena (porte menor, vagens em cachos densos).",obs:"Típico das matas semideciduais da região.",q:"Anadenanthera colubrina"},
+{pop:"Paineira",sci:"Ceiba speciosa (A.St.-Hil.) Ravenna",sin:"Chorisia speciosa",fam:"Malvaceae",ori:"nr",porte:"G",folha:["digitada"],filo:"alterna",flor:"rosa",m:[2,3,4,5],tr:["espinho"],diag:"Tronco verde, muitas vezes barrigudo, com acúleos cônicos e grossos. Folhas alternas digitadas com 5 a 7 folíolos serreados. Flores grandes e rosas com centro claro. Fruto com paina branca.",conf:"Ipê-roxo (folha oposta, sem acúleos) e monguba (sem acúleos).",obs:"Porte muito grande; inadequada para calçadas estreitas.",q:"Ceiba speciosa"},
+{pop:"Embaúba",sci:"Cecropia pachystachya Trécul",sin:"",fam:"Urticaceae",ori:"nr",porte:"M",folha:["peltada"],filo:"alterna",flor:"inconspicua",m:[],tr:["anel","nerv"],diag:"Folhas grandes e peltadas (pecíolo preso no meio da lâmina), recortadas em 7 a 10 lobos, com face inferior esbranquiçada. Tronco oco e claro com cicatrizes em anel. Ramos em candelabro.",conf:"Cheflera (folha composta digitada, não peltada).",obs:"Pioneira, espontânea em lotes vagos. Abriga formigas no tronco oco.",q:"Cecropia pachystachya"},
+{pop:"Tipuana",sci:"Tipuana tipu (Benth.) Kuntze",sin:"",fam:"Fabaceae",ori:"ex",porte:"G",folha:["pinada"],filo:"alterna",flor:"amarela",m:[10,11,12],tr:[],diag:"Folhas pinadas com 11 a 21 folíolos oblongos, de ápice arredondado ou com chanfro. Flores amarelo-alaranjadas. Fruto alado (sâmara), como o de um bordo.",conf:"Sibipiruna (bipinada).",obs:"Porte e raízes causam conflitos em ruas antigas.",q:"Tipuana tipu"},
+{pop:"Mulungu, eritrina",sci:"Erythrina speciosa Andrews / E. mulungu Mart.",sin:"",fam:"Fabaceae",ori:"nr",porte:"M",folha:["trifoliolada"],filo:"alterna",flor:"vermelha",m:[6,7,8,9],tr:["espinho"],diag:"Folhas trifolioladas, com folíolo terminal maior e losangular. Ramos e tronco com acúleos. Flores vermelhas tubulosas em cachos eretos no inverno, com a árvore sem folhas.",conf:"Pequizeiro (trifoliolada, mas oposta e sem acúleos).",obs:"",q:"Erythrina speciosa"},
+{pop:"Monguba",sci:"Pachira aquatica Aubl.",sin:"",fam:"Malvaceae",ori:"nb",porte:"G",folha:["digitada"],filo:"alterna",flor:"branca",m:[9,10,11,12,1,2],tr:[],diag:"Folhas alternas digitadas com 5 a 9 folíolos grandes, inteiros e lustrosos. Tronco verde e liso, sem acúleos. Flores grandes de pétalas creme e estames longos. Fruto grande e marrom.",conf:"Paineira (tem acúleos) e cheflera (folíolos pendentes, flores vermelhas).",obs:"Nativa da Amazônia.",q:"Pachira aquatica"},
+{pop:"Fedegoso, manduirana",sci:"Senna macranthera (DC. ex Collad.) H.S.Irwin & Barneby",sin:"Cassia macranthera",fam:"Fabaceae",ori:"nr",porte:"M",folha:["pinada"],filo:"alterna",flor:"amarela",m:[12,1,2,3,4],tr:["glan"],diag:"Folhas pinadas pares com 2 (raramente 3) pares de folíolos ovados; glândula entre os folíolos do par basal. Flores amarelas grandes em cachos. Vagem longa e cilíndrica.",conf:"Cássia-imperial (mais folíolos, cachos pendentes) e cássia-carnaval, Senna spectabilis (muitos pares de folíolos).",obs:"Nativa de porte pequeno a médio, usada sob fiação.",q:"Senna macranthera"},
+{pop:"Escova-de-garrafa, calistemo",sci:"Callistemon viminalis (Sol. ex Gaertn.) G.Don",sin:"Melaleuca viminalis",fam:"Myrtaceae",ori:"ex",porte:"P",folha:["simples"],filo:"alterna",flor:"vermelha",m:[9,10,11,12],tr:["cheiro"],diag:"Folhas estreitas e lineares, com cheiro ao amassar; ramos pendentes. Flores vermelhas de estames longos formando uma escova em volta do ramo. Frutos lenhosos em anel, persistentes no ramo.",conf:"",obs:"",q:"Callistemon viminalis"},
+{pop:"Grevílea",sci:"Grevillea robusta A.Cunn. ex R.Br.",sin:"",fam:"Proteaceae",ori:"ex",porte:"G",folha:["simples","pinada"],filo:"alterna",flor:"vermelha",m:[9,10,11],tr:[],diag:"Folha simples, mas tão recortada que parece composta (aspecto de samambaia); face inferior prateada. Flores alaranjadas em escovas de um lado só. Copa piramidal.",conf:"Jacarandá-mimoso (folha bipinada de verdade e oposta).",obs:"Porte grande; galhos quebradiços.",q:"Grevillea robusta"},
+{pop:"Cheflera, árvore-guarda-chuva",sci:"Schefflera actinophylla (Endl.) Harms",sin:"Heptapleurum actinophyllum",fam:"Araliaceae",ori:"ex",porte:"M",folha:["digitada"],filo:"alterna",flor:"vermelha",m:[12,1,2,3],tr:[],diag:"Folhas digitadas grandes, com 7 a 16 folíolos pendentes em pecíolos longos, como um guarda-chuva. Inflorescências vermelhas em raios acima da copa.",conf:"Monguba (folíolos menos numerosos, flores brancas grandes).",obs:"",q:"Schefflera actinophylla"},
+{pop:"Cinamomo, santa-bárbara",sci:"Melia azedarach L.",sin:"",fam:"Meliaceae",ori:"inv",porte:"M",folha:["bipinada"],filo:"alterna",flor:"azul",m:[8,9,10,11],tr:["cheiro"],diag:"Folhas bi a tripinadas, com folíolos serreados e cheiro desagradável ao amassar. Flores lilás perfumadas em panículas. Frutos amarelos e globosos que ficam na árvore depois da queda das folhas.",conf:"Nim (folha só pinada, folíolos curvos).",obs:"Invasora; frutos tóxicos.",q:"Melia azedarach"},
+{pop:"Nim, neem",sci:"Azadirachta indica A.Juss.",sin:"",fam:"Meliaceae",ori:"ex",porte:"M",folha:["pinada"],filo:"alterna",flor:"branca",m:[8,9,10],tr:["cheiro"],diag:"Folhas pinadas com 8 a 19 folíolos assimétricos, curvos e serreados. Cheiro amargo, de alho, ao amassar. Flores brancas pequenas e perfumadas.",conf:"Cinamomo (folha bipinada, frutos amarelos).",obs:"Plantio recente em várias cidades.",q:"Azadirachta indica"},
+{pop:"Pequizeiro",sci:"Caryocar brasiliense Cambess.",sin:"",fam:"Caryocaraceae",ori:"nr",porte:"M",folha:["trifoliolada"],filo:"oposta",flor:"branca",m:[9,10,11],tr:[],diag:"Folhas opostas trifolioladas, folíolos com margem crenada e pelos. Tronco tortuoso, de casca grossa (aspecto de cerrado). Flores grandes creme-amareladas com muitos estames. Fruto verde com polpa amarela.",conf:"Mulungu (trifoliolada alterna com acúleos).",obs:"IMUNE DE CORTE em MG (Lei 20.308/2012).",q:"Caryocar brasiliense"},
+{pop:"Jatobá",sci:"Hymenaea courbaril L. (no cerrado, H. stigonocarpa)",sin:"",fam:"Fabaceae",ori:"nr",porte:"G",folha:["bifoliolada"],filo:"alterna",flor:"branca",m:[10,11,12],tr:[],diag:"Folhas com apenas 2 folíolos assimétricos, como asas de borboleta, com pontos translúcidos. Fruto vagem grossa e lenhosa com polpa farinácea.",conf:"Pata-de-vaca (folha simples bilobada, não dividida até a base).",obs:"",q:"Hymenaea courbaril"},
+{pop:"Mutamba",sci:"Guazuma ulmifolia Lam.",sin:"",fam:"Malvaceae",ori:"nr",porte:"M",folha:["simples"],filo:"alterna",flor:"amarela",m:[9,10,11,12],tr:["nerv"],diag:"Folhas simples e alternas, de base assimétrica e margem serreada, com 3 nervuras saindo da base e pelos estrelados ásperos. Frutos globosos, pretos, lenhosos e verrugosos.",conf:"Calabura (folhas pegajosas, flores brancas).",obs:"Pioneira, frequente em áreas abertas.",q:"Guazuma ulmifolia"},
+{pop:"Canafístula",sci:"Peltophorum dubium (Spreng.) Taub.",sin:"",fam:"Fabaceae",ori:"nr",porte:"G",folha:["bipinada"],filo:"alterna",flor:"amarela",m:[12,1,2],tr:[],diag:"Folhas bipinadas com folíolos oblongos; brotos e raque com pelos ferrugíneos. Panículas eretas de flores amarelas no verão. Vagem achatada e estreita, com margens aladas, que não se abre.",conf:"Sibipiruna (floresce na primavera, sem pelos ferrugíneos, vagem que se abre).",obs:"",q:"Peltophorum dubium"},
+{pop:"Calabura, pau-de-seda",sci:"Muntingia calabura L.",sin:"",fam:"Muntingiaceae",ori:"ex",porte:"M",folha:["simples"],filo:"alterna",flor:"branca",m:[1,2,3,4,5,6,7,8,9,10,11,12],tr:["nerv"],diag:"Ramos horizontais em leque. Folhas simples, assimétricas, serreadas, pilosas e pegajosas. Flores brancas isoladas, parecidas com as do morango. Frutinhos vermelhos e doces.",conf:"Mutamba (folhas ásperas, frutos pretos lenhosos).",obs:"",q:"Muntingia calabura"},
+{pop:"Eucalipto",sci:"Eucalyptus spp. / Corymbia citriodora (Hook.) K.D.Hill & L.A.S.Johnson",sin:"",fam:"Myrtaceae",ori:"ex",porte:"G",folha:["simples"],filo:"alterna",flor:"branca",m:[],tr:["cheiro","casca"],diag:"Folhas adultas alternas, pendentes e em forma de foice, com cheiro forte ao amassar. Tronco liso que descama em tiras ou placas; C. citriodora tem tronco branco e cheiro de citronela. Fruto cápsula lenhosa com tampa.",conf:"",obs:"Porte muito grande; risco de queda de galhos.",q:"Eucalyptus"},
+{pop:"Pau-brasil",sci:"Paubrasilia echinata (Lam.) Gagnon, H.C.Lima & G.P.Lewis",sin:"Caesalpinia echinata",fam:"Fabaceae",ori:"nb",porte:"M",folha:["bipinada"],filo:"alterna",flor:"amarela",m:[9,10,11],tr:["espinho"],diag:"Folhas bipinadas com folíolos pequenos, assimétricos e verde-brilhantes. Ramos e tronco com acúleos. Flores amarelas perfumadas com uma pétala manchada de vermelho. Vagem coberta de espinhos.",conf:"Sibipiruna (sem acúleos, flores em cachos maiores).",obs:"Espécie ameaçada; comum em plantios comemorativos.",q:"Paubrasilia echinata"}
+];
+
+const ORI={nr:"Nativa",nb:"Nativa BR",ex:"Exótica",inv:"Invasora"};
+const ORIL={nr:"Nativa da região",nb:"Nativa de outra região do Brasil",ex:"Exótica",inv:"Exótica invasora"};
+const FLOR={amarela:"Amarela",rosa:"Rosa ou roxa",branca:"Branca ou creme",vermelha:"Vermelha ou laranja",azul:"Azul ou lilás",inconspicua:"Pequena, pouco vistosa"};
+const TR={latex:"Látex ou seiva leitosa",espinho:"Espinhos ou acúleos",cheiro:"Cheiro ao amassar a folha",casca:"Tronco descamante ou manchado",nerv:"3 ou mais nervuras saindo da base",glan:"Glândulas na folha ou raque alada",anel:"Cicatriz em anel nos ramos ou tronco"};
+const FOLHA={simples:"Simples",bilobada:"Simples bilobada",peltada:"Simples peltada",pinada:"Composta pinada",bipinada:"Composta bipinada",digitada:"Composta digitada",trifoliolada:"Trifoliolada",bifoliolada:"Bifoliolada",palmeira:"Palmeira"};
+const FGROUP=[["simples","Simples",["simples","bilobada","peltada"]],["pinada","Pinada",["pinada"]],["bipinada","Bipinada",["bipinada"]],["digitada","Digitada",["digitada"]],["trifoliolada","2 ou 3 folíolos",["trifoliolada","bifoliolada"]],["palmeira","Palmeira",["palmeira"]]];
+const MES=["J","F","M","A","M","J","J","A","S","O","N","D"];
+const FOTOS=/*FOTOS*/{"0": {"folha": {"f": "fotos_web/01_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/123030458"}, "flor": {"f": "fotos_web/01_flor.jpg", "a": "(c) felipevieira18o, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/331008542"}, "fruto": {"f": "fotos_web/01_fruto.jpg", "a": "(c) André Ambrozio, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/259751949"}}, "1": {"folha": {"f": "fotos_web/02_folha.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/263123039"}, "flor": {"f": "fotos_web/02_flor.jpg", "a": "(c) Ana Julia Peracini, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/176479546"}, "fruto": {"f": "fotos_web/02_fruto.jpg", "a": "(c) André Ambrozio, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/189789658"}}, "2": {"folha": {"f": "fotos_web/03_folha.jpg", "a": "(c) helenkoba, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/85947099"}, "flor": {"f": "fotos_web/03_flor.jpg", "a": "(c) Flávio Mendes, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/57217038"}, "fruto": {"f": "fotos_web/03_fruto.jpg", "a": "(c) Ana Cristina Almeida, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/148353053"}}, "3": {"folha": {"f": "fotos_web/04_folha.jpg", "a": "(c) Liu Idárraga Orozco, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/159735722"}, "flor": {"f": "fotos_web/04_flor.jpg", "a": "(c) alexschlosser, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/192334535"}, "fruto": {"f": "fotos_web/04_fruto.jpg", "a": "(c) ernesto_sakai, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/196421363"}}, "4": {"folha": {"f": "fotos_web/05_folha.jpg", "a": "no rights reserved", "l": "CC0", "o": "https://www.inaturalist.org/observations/400093136"}, "flor": {"f": "fotos_web/05_flor.jpg", "a": "(c) Dalva Gonçalves, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/319794281"}, "fruto": {"f": "fotos_web/05_fruto.jpg", "a": "(c) Nelson Wisnik, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/36072008"}}, "5": {"folha": {"f": "fotos_web/06_folha.jpg", "a": "(c) Eduardo Dalabeneta, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/243577208"}, "flor": {"f": "fotos_web/06_flor.jpg", "a": "(c) Liu Idárraga Orozco, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/109347640"}, "fruto": {"f": "fotos_web/06_fruto.jpg", "a": "(c) rosindia, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/43426685"}}, "6": {"folha": {"f": "fotos_web/07_folha.jpg", "a": "(c) Geovane Siqueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/230313443"}, "flor": {"f": "fotos_web/07_flor.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/99641611"}, "fruto": {"f": "fotos_web/07_fruto.jpg", "a": "(c) Yby Naturalista, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/195691275"}}, "7": {"folha": {"f": "fotos_web/08_folha.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/116627221"}, "flor": {"f": "fotos_web/08_flor.jpg", "a": "(c) Lucas Leuzinger, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/172300484"}, "fruto": {"f": "fotos_web/08_fruto.jpg", "a": "(c) Thamylles Alves, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/203006008"}}, "8": {"folha": {"f": "fotos_web/09_folha.jpg", "a": "(c) Kamilla Chola, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/228308791"}, "flor": {"f": "fotos_web/09_flor.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/37766362"}, "fruto": {"f": "fotos_web/09_fruto.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/66319054"}}, "9": {"folha": {"f": "fotos_web/10_folha.jpg", "a": "(c) Mariano Ordano, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/43756731"}, "flor": {"f": "fotos_web/10_flor.jpg", "a": "(c) anne_sbuna, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/170149358"}, "fruto": {"f": "fotos_web/10_fruto.jpg", "a": "(c) Leonardo Fernando de Goes, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/396643644"}}, "10": {"folha": {"f": "fotos_web/11_folha.jpg", "a": "(c) Bianca Darski, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/60911625"}, "flor": {"f": "fotos_web/11_flor.jpg", "a": "(c) Gabriel Schirme, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/98705814"}, "fruto": {"f": "fotos_web/11_fruto.jpg", "a": "(c) Nelson Wisnik, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/37348755"}}, "11": {"folha": {"f": "fotos_web/12_folha.jpg", "a": "(c) vittoor, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/192211431"}, "flor": {"f": "fotos_web/12_flor.jpg", "a": "(c) abelardomendesjr, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/215149107"}, "fruto": {"f": "fotos_web/12_fruto.jpg", "a": "(c) jugohr, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/192057774"}}, "12": {"folha": {"f": "fotos_web/13_folha.jpg", "a": "(c) Janet Wright, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/86270666"}, "flor": {"f": "fotos_web/13_flor.jpg", "a": "(c) Marco Aurélio de Carvalho Aurich, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/339931558"}, "fruto": {"f": "fotos_web/13_fruto.jpg", "a": "(c) Silver Leferson, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/254430225"}}, "13": {"folha": {"f": "fotos_web/14_folha.jpg", "a": "(c) Ana Carolina Masseran (da Fonte), some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/116341342"}, "flor": {"f": "fotos_web/14_flor.jpg", "a": "(c) Witallo Sousa, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/138919335"}, "fruto": {"f": "fotos_web/14_fruto.jpg", "a": "(c) Giovanni Marques de Castro, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/6874953"}}, "14": {"folha": {"f": "fotos_web/15_folha.jpg", "a": "(c) Natã Nery, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/282600550"}, "flor": {"f": "fotos_web/15_flor.jpg", "a": "(c) Lucas Kaminski, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/102367314"}, "fruto": {"f": "fotos_web/15_fruto.jpg", "a": "(c) Iris Neves, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/345528062"}}, "15": {"folha": {"f": "fotos_web/16_folha.jpg", "a": "(c) Manequinho Correia, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/198801423"}, "flor": {"f": "fotos_web/16_flor.jpg", "a": "(c) Nelson Wisnik, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/6182572"}, "fruto": {"f": "fotos_web/16_fruto.jpg", "a": "(c) Nelson Wisnik, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/6182572"}}, "16": {"folha": {"f": "fotos_web/17_folha.jpg", "a": "(c) franciel160, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/183418259"}, "flor": {"f": "fotos_web/17_flor.jpg", "a": "(c) Santiago Mailhos, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/279584315"}, "fruto": {"f": "fotos_web/17_fruto.jpg", "a": "(c) Dr. Mauro Galetti, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/180146198"}}, "17": {"folha": {"f": "fotos_web/18_folha.jpg", "a": "(c) João Víctor, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/277075277"}, "flor": {"f": "fotos_web/18_flor.jpg", "a": "(c) Ana Carolina Masseran (da Fonte), some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/81254302"}, "fruto": {"f": "fotos_web/18_fruto.jpg", "a": "(c) Ana Carolina Masseran (da Fonte), some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/81254302"}}, "18": {"folha": {"f": "fotos_web/19_folha.jpg", "a": "(c) Rubens Rangel Silva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/228828143"}, "flor": {"f": "fotos_web/19_flor.jpg", "a": "(c) Raphael Sant&#x27; Ana, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/385532264"}, "fruto": {"f": "fotos_web/19_fruto.jpg", "a": "(c) Geovane Siqueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/255807584"}}, "19": {"folha": {"f": "fotos_web/20_folha.jpg", "a": "(c) Mandie Meier, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/331809867"}, "flor": {"f": "fotos_web/20_flor.jpg", "a": "(c) Alexe Vallentin, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/233109930"}, "fruto": {"f": "fotos_web/20_fruto.jpg", "a": "(c) The Great Walter, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/394186003"}}, "20": {"folha": {"f": "fotos_web/21_folha.jpg", "a": "(c) Anabela Plos, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/24099405"}, "flor": {"f": "fotos_web/21_flor.jpg", "a": "(c) FELIPE GOMES E SILVA, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/353677770"}, "fruto": {"f": "fotos_web/21_fruto.jpg", "a": "(c) FELIPE GOMES E SILVA, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/353677770"}}, "21": {"folha": {"f": "fotos_web/22_folha.jpg", "a": "(c) Gaurav D, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/351153957"}, "flor": {"f": "fotos_web/22_flor.jpg", "a": "(c) Gabi Lopes, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/231240559"}, "fruto": {"f": "fotos_web/22_fruto.jpg", "a": "(c) Fabio Pires, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/284516902"}}, "22": {"folha": {"f": "fotos_web/23_folha.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/102897467"}, "flor": {"f": "fotos_web/23_flor.jpg", "a": "(c) Luiz Felipe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/209955944"}, "fruto": {"f": "fotos_web/23_fruto.jpg", "a": "(c) André Ambrozio, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/173678311"}}, "23": {"folha": {"f": "fotos_web/24_folha.jpg", "a": "(c) stephen, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/335811953"}, "flor": {"f": "fotos_web/24_flor.jpg", "a": "(c) Renata Xavier, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/44677036"}, "fruto": {"f": "fotos_web/24_fruto.jpg", "a": "(c) sofiaaudrey, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/284859649"}}, "24": {"folha": {"f": "fotos_web/25_folha.jpg", "a": "(c) Danilo Alcântara, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/266820720"}, "flor": {"f": "fotos_web/25_flor.jpg", "a": "(c) Mariane Kaizer, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/275737051"}}, "25": {"folha": {"f": "fotos_web/26_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/130928133"}, "flor": {"f": "fotos_web/26_flor.jpg", "a": "(c) claudia_mermelstein, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/105382113"}, "fruto": {"f": "fotos_web/26_fruto.jpg", "a": "(c) Rodrigo Paiva Lázaro, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/84370285"}}, "26": {"folha": {"f": "fotos_web/27_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/73903367"}, "flor": {"f": "fotos_web/27_flor.jpg", "a": "(c) Paulo Gonçalves Carvalho, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/65705623"}, "fruto": {"f": "fotos_web/27_fruto.jpg", "a": "(c) Heitor Fagundes Beloch, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/88036537"}}, "27": {"folha": {"f": "fotos_web/28_folha.jpg", "a": "(c) Yasmin, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/374991068"}, "flor": {"f": "fotos_web/28_flor.jpg", "a": "(c) laranepomuceno, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/401116852"}, "fruto": {"f": "fotos_web/28_fruto.jpg", "a": "(c) anitavang, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/166250192"}}, "28": {"folha": {"f": "fotos_web/29_folha.jpg", "a": "(c) Pere Valls, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/222894650"}, "flor": {"f": "fotos_web/29_flor.jpg", "a": "(c) Cajá-manga, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/174322015"}, "fruto": {"f": "fotos_web/29_fruto.jpg", "a": "(c) Frederico Machado, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/67003471"}}, "29": {"folha": {"f": "fotos_web/30_folha.jpg", "a": "(c) beatriz sabino, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/376580035"}, "flor": {"f": "fotos_web/30_flor.jpg", "a": "(c) The Great Walter, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/385354560"}, "fruto": {"f": "fotos_web/30_fruto.jpg", "a": "(c) Clarice Dorocinski, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/183147002"}}, "30": {"folha": {"f": "fotos_web/31_folha.jpg", "a": "(c) Julie Cretucci Félix, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/319951377"}, "flor": {"f": "fotos_web/31_flor.jpg", "a": "(c) Vitor Domingues, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/96573935"}, "fruto": {"f": "fotos_web/31_fruto.jpg", "a": "(c) Daniel Dias, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/150662253"}}, "31": {"folha": {"f": "fotos_web/32_folha.jpg", "a": "(c) Willard Basilio, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/397349640"}, "flor": {"f": "fotos_web/32_flor.jpg", "a": "(c) Paulo Gonçalves Carvalho, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/187044440"}, "fruto": {"f": "fotos_web/32_fruto.jpg", "a": "(c) Nelson Wisnik, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/7112719"}}, "32": {"folha": {"f": "fotos_web/33_folha.jpg", "a": "(c) cristianol1456, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/227275732"}, "flor": {"f": "fotos_web/33_flor.jpg", "a": "(c) Alan Gustavo Marinho Aguiar, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/299835978"}, "fruto": {"f": "fotos_web/33_fruto.jpg", "a": "(c) Geovane Siqueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/195205454"}}, "33": {"folha": {"f": "fotos_web/34_folha.jpg", "a": "(c) Eduardo Dalabeneta, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/211637901"}, "flor": {"f": "fotos_web/34_flor.jpg", "a": "(c) vittoor, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/159279324"}, "fruto": {"f": "fotos_web/34_fruto.jpg", "a": "(c) Douglas, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/187976063"}}, "34": {"folha": {"f": "fotos_web/35_folha.jpg", "a": "(c) Mateus Freijo, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/106041157"}, "flor": {"f": "fotos_web/35_flor.jpg", "a": "(c) Frederico Acaz Sonntag, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/60610463"}, "fruto": {"f": "fotos_web/35_fruto.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/116605577"}}, "35": {"folha": {"f": "fotos_web/36_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/74593786"}, "flor": {"f": "fotos_web/36_flor.jpg", "a": "(c) Vitoria Fortes, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/269438151"}, "fruto": {"f": "fotos_web/36_fruto.jpg", "a": "(c) Conrado Pável de Oliveira, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/233691684"}}, "36": {"folha": {"f": "fotos_web/37_folha.jpg", "a": "(c) Wagner Nogueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/66518320"}, "flor": {"f": "fotos_web/37_flor.jpg", "a": "(c) Geovane Siqueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/334599698"}, "fruto": {"f": "fotos_web/37_fruto.jpg", "a": "(c) joescience1, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/193336505"}}, "37": {"folha": {"f": "fotos_web/38_folha.jpg", "a": "(c) Gonzalo Martinez, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/75444602"}, "flor": {"f": "fotos_web/38_flor.jpg", "a": "(c) Valeria Vieira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/328688887"}, "fruto": {"f": "fotos_web/38_fruto.jpg", "a": "(c) Ilza Fujiyama, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/115831907"}}, "38": {"folha": {"f": "fotos_web/39_folha.jpg", "a": "(c) Thomaz Ricardo Favreto Sinani, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/207286934"}, "flor": {"f": "fotos_web/39_flor.jpg", "a": "(c) Carlos Eduardo de Siqueira, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/254095124"}, "fruto": {"f": "fotos_web/39_fruto.jpg", "a": "(c) Mickaël Villemagne, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/103004459"}}, "39": {"folha": {"f": "fotos_web/40_folha.jpg", "a": "(c) Alänä Atl, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/72129386"}, "flor": {"f": "fotos_web/40_flor.jpg", "a": "(c) Maria Eduarda, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/65307051"}, "fruto": {"f": "fotos_web/40_fruto.jpg", "a": "(c) thiagolyra, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/349205582"}}, "40": {"folha": {"f": "fotos_web/41_folha.jpg", "a": "(c) Marcio Santos Ferreira, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/333744161"}, "flor": {"f": "fotos_web/41_flor.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/269062157"}, "fruto": {"f": "fotos_web/41_fruto.jpg", "a": "(c) Carla Guedes, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/263295549"}}, "41": {"folha": {"f": "fotos_web/42_folha.jpg", "a": "(c) jeanelz, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/234364383"}, "flor": {"f": "fotos_web/42_flor.jpg", "a": "(c) Naiara Daniela, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/61176191"}, "fruto": {"f": "fotos_web/42_fruto.jpg", "a": "(c) The Great Walter, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/394187071"}}, "42": {"folha": {"f": "fotos_web/43_folha.jpg", "a": "(c) oohwhatsthat, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/342048889"}, "flor": {"f": "fotos_web/43_flor.jpg", "a": "(c) Ísis Meri Medri, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/99018403"}, "fruto": {"f": "fotos_web/43_fruto.jpg", "a": "(c) Ísis Meri Medri, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/99018403"}}, "43": {"folha": {"f": "fotos_web/44_folha.jpg", "a": "(c) Magenta, M.A.G., some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/76768213"}, "flor": {"f": "fotos_web/44_flor.jpg", "a": "(c) Guilherme Perrud, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/336854741"}, "fruto": {"f": "fotos_web/44_fruto.jpg", "a": "(c) Manequinho Correia, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/201404572"}}, "44": {"folha": {"f": "fotos_web/45_folha.jpg", "a": "(c) Liu Idárraga Orozco, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/193248245"}, "flor": {"f": "fotos_web/45_flor.jpg", "a": "no rights reserved", "l": "CC0", "o": "https://www.inaturalist.org/observations/61160181"}, "fruto": {"f": "fotos_web/45_fruto.jpg", "a": "(c) Wallace Carneiro Almeida, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/372375718"}}, "45": {"folha": {"f": "fotos_web/46_folha.jpg", "a": "(c) Víctor de Paiva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/155701756"}, "flor": {"f": "fotos_web/46_flor.jpg", "a": "(c) Edivan Manoel, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/363943850"}, "fruto": {"f": "fotos_web/46_fruto.jpg", "a": "(c) Edivan Manoel, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/363943850"}}, "46": {"folha": {"f": "fotos_web/47_folha.jpg", "a": "(c) Eric Fischer Rempe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/94624671"}, "flor": {"f": "fotos_web/47_flor.jpg", "a": "(c) Eric Fischer Rempe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/183564256"}, "fruto": {"f": "fotos_web/47_fruto.jpg", "a": "(c) Eric Fischer Rempe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/183564256"}}, "47": {"folha": {"f": "fotos_web/48_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/250086065"}, "flor": {"f": "fotos_web/48_flor.jpg", "a": "(c) paulossilva, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/194192810"}, "fruto": {"f": "fotos_web/48_fruto.jpg", "a": "(c) Eric Fischer Rempe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/123411892"}}, "48": {"folha": {"f": "fotos_web/49_folha.jpg", "a": "(c) Maycon, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/111091294"}, "flor": {"f": "fotos_web/49_flor.jpg", "a": "(c) Anderson Silva (Pinto, A.S.), some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/262685475"}, "fruto": {"f": "fotos_web/49_fruto.jpg", "a": "(c) Marcos Mortara, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/87634861"}}, "49": {"folha": {"f": "fotos_web/50_folha.jpg", "a": "(c) Ana Cristina Almeida, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/164538458"}, "flor": {"f": "fotos_web/50_flor.jpg", "a": "(c) Alix Sanchis, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/153852737"}, "fruto": {"f": "fotos_web/50_fruto.jpg", "a": "(c) Eric Fischer Rempe, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/38041457"}}, "50": {"folha": {"f": "fotos_web/51_folha.jpg", "a": "(c) Manequinho Correia, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/221995980"}, "flor": {"f": "fotos_web/51_flor.jpg", "a": "(c) Yoannis Domínguez, some rights reserved (CC BY)", "l": "CC-BY", "o": "https://www.inaturalist.org/observations/232391900"}, "fruto": {"f": "fotos_web/51_fruto.jpg", "a": "(c) anyamyidk, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/33913179"}}, "51": {"folha": {"f": "fotos_web/52_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/72100877"}, "flor": {"f": "fotos_web/52_flor.jpg", "a": "(c) Julia Batista, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/407383123"}, "fruto": {"f": "fotos_web/52_fruto.jpg", "a": "(c) Julia Batista, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/407383123"}}, "52": {"folha": {"f": "fotos_web/53_folha.jpg", "a": "(c) Diego Monsores, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/235651924"}, "flor": {"f": "fotos_web/53_flor.jpg", "a": "(c) Henrique Bitencourt, some rights reserved (CC BY-SA)", "l": "CC-BY-SA", "o": "https://www.inaturalist.org/observations/241145398"}, "fruto": {"f": "fotos_web/53_fruto.jpg", "a": "(c) Klayver Santos, some rights reserved (CC BY-NC)", "l": "CC-BY-NC", "o": "https://www.inaturalist.org/observations/362154639"}}}/*FIM*/;
+const FTIPO=[["folha","Sem flor"],["flor","Flor"],["fruto","Fruto"]];
+function gal(i){
+  const f=FOTOS[i]||{};
+  if(!Object.keys(f).length)return "";
+  return `<div class="gal">${FTIPO.map(([t,l])=>f[t]?`<figure><button type="button" data-i="${i}" data-t="${t}" aria-label="Ampliar foto: ${l}"><img src="${f[t].f}" alt="${l}" loading="lazy"></button><figcaption>${l}</figcaption></figure>`:`<figure><div class="nofoto">sem foto</div><figcaption>${l}</figcaption></figure>`).join("")}</div>`;
+}
+
+/* ícones */
+function leaf(x,y,l,w,a){return `<path class="lf" d="M0 0C${w} ${-l*.25} ${w} ${-l*.72} 0 ${-l}C${-w} ${-l*.72} ${-w} ${-l*.25} 0 0Z" transform="translate(${x} ${y}) rotate(${a})"/>`}
+function line(x1,y1,x2,y2,c="ax"){return `<path class="${c}" d="M${x1} ${y1}L${x2} ${y2}"/>`}
+function icon(t){
+  let s="";
+  if(t==="simples"){s=line(50,97,50,84)+leaf(50,84,72,24,0)+line(50,82,50,18,"vn")}
+  else if(t==="bilobada"){s=line(50,97,50,80)+leaf(50,80,60,17,-21)+leaf(50,80,60,17,21)}
+  else if(t==="peltada"){for(let a=0;a<360;a+=40)s+=leaf(50,52,40,8,a);s+=`<circle cx="50" cy="52" r="3.2" class="trunk"/>`}
+  else if(t==="pinada"){s=line(50,97,50,20);[82,68,54,40,27].forEach(y=>{s+=leaf(50,y,22,6,-70)+leaf(50,y,22,6,70)});s+=leaf(50,21,17,6,0)}
+  else if(t==="bipinada"){s=line(50,97,50,10);[80,60,40,22].forEach(y=>{[-1,1].forEach(d=>{const dx=30*d,dy=-14,a=Math.atan2(dx,-dy)*180/Math.PI;s+=line(50,y,50+dx,y+dy);for(let t=.22;t<=1;t+=.16){const px=50+dx*t,py=y+dy*t;s+=leaf(px,py,7,2.4,a-55)+leaf(px,py,7,2.4,a+55)}})})}
+  else if(t==="digitada"){s=line(50,97,50,58);[-72,-36,0,36,72].forEach(a=>s+=leaf(50,58,40,10,a))}
+  else if(t==="trifoliolada"){s=line(50,97,50,60)+leaf(50,60,40,13,-55)+leaf(50,60,45,13,0)+leaf(50,60,40,13,55)}
+  else if(t==="bifoliolada"){s=line(50,97,50,66)+leaf(50,66,52,15,-25)+leaf(50,66,52,15,25)}
+  else if(t==="palmeira"){s=`<path class="trunk" d="M47.6 97L48.7 42H51.3L52.4 97Z"/>`;[[10,54],[18,30],[34,13],[66,13],[82,30],[90,54],[50,6]].forEach(([x,y])=>{const cx=(50+x)/2,cy=Math.min(40,y)-12;s+=`<path class="frond" d="M50 41Q${cx} ${cy} ${x} ${y}"/>`})}
+  else if(t==="alterna"){s=line(50,97,50,8);[[80,58],[63,-58],[46,58],[29,-58]].forEach(([y,a])=>s+=leaf(50,y,27,8,a))}
+  else if(t==="oposta"){s=line(50,97,50,8);[78,50].forEach(y=>s+=leaf(50,y,28,8,-60)+leaf(50,y,28,8,60));s+=leaf(50,22,16,5,0)}
+  return `<svg viewBox="0 0 100 100" aria-hidden="true">${s}</svg>`;
+}
+
+/* chave */
+const state={folha:new Set(),filo:new Set(),flor:new Set(),ori:new Set(),tr:new Set(),q:""};
+const kp=document.getElementById("keypanel");
+function group(key,title,opts){
+  const fs=document.createElement("fieldset");fs.className="kgroup";
+  fs.innerHTML=`<legend class="label">${title}</legend><div class="chips"></div>`;
+  const box=fs.querySelector(".chips");
+  opts.forEach(([v,lab,pre])=>{const b=document.createElement("button");b.type="button";b.className="chip";b.id=`k-${key}-${v}`;b.setAttribute("aria-pressed","false");b.innerHTML=(pre||"")+`<span>${lab}</span>`;b.onclick=()=>{const s=state[key];s.has(v)?s.delete(v):s.add(v);b.setAttribute("aria-pressed",s.has(v));render()};box.appendChild(b)});
+  kp.appendChild(fs);
+}
+group("folha","1 · Tipo de folha",FGROUP.map(([v,l])=>[v,l,icon(v==="trifoliolada"?"trifoliolada":v)]));
+group("filo","2 · Posição das folhas no ramo",[["alterna","Alternas",icon("alterna")],["oposta","Opostas",icon("oposta")]]);
+group("tr","3 · Sinais marcantes (todos devem estar presentes)",Object.entries(TR).map(([k,v])=>[k,v]));
+group("flor","4 · Cor da flor",Object.entries(FLOR).map(([k,v])=>[k,v,`<span class="dot" style="background:var(--f-${k})"></span>`]));
+group("ori","Origem",Object.entries(ORIL).map(([k,v])=>[k,v]));
+
+function norm(s){return s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase()}
+function match(sp){
+  if(state.folha.size){const ok=[...state.folha].some(g=>FGROUP.find(x=>x[0]===g)[2].some(f=>sp.folha.includes(f)));if(!ok)return false}
+  if(state.filo.size&&!state.filo.has(sp.filo))return false;
+  if(state.flor.size&&!state.flor.has(sp.flor))return false;
+  if(state.ori.size&&!state.ori.has(sp.ori))return false;
+  for(const t of state.tr)if(!sp.tr.includes(t))return false;
+  if(state.q){const h=norm(sp.pop+" "+sp.sci+" "+sp.sin+" "+sp.fam);if(!norm(state.q).split(/\s+/).every(w=>h.includes(w)))return false}
+  return true;
+}
+function card(sp){
+  const idx=SP.indexOf(sp);
+  const months=sp.m.length?sp.m.map(i=>MES[i-1]).join(" "):"";
+  const imune=/IMUNE/.test(sp.obs);
+  return `<article class="card">
+  <div class="hd">${icon(sp.folha[0])}<div style="display:grid;gap:2px;min-width:0"><h3>${sp.pop}</h3><span class="sci">${sp.sci}</span>${sp.sin?`<span class="fam">sin. ${sp.sin}</span>`:""}<span class="fam">${sp.fam.toUpperCase()} · PORTE ${sp.porte}</span></div></div>
+  ${gal(idx)}
+  <div class="tags"><span class="tag ori ori-${sp.ori}">${ORI[sp.ori]}</span><span class="tag">${sp.folha.map(f=>FOLHA[f]).join(" / ")}</span>${sp.filo!=="—"?`<span class="tag">${sp.filo==="oposta"?"Opostas":"Alternas"}</span>`:""}<span class="tag"><span class="dot" style="background:var(--f-${sp.flor})"></span>${FLOR[sp.flor]}${months?" · "+months:""}</span>${sp.tr.map(t=>`<span class="tag">${TR[t]}</span>`).join("")}</div>
+  <p>${sp.diag}</p>
+  ${sp.conf?`<p><span class="k">Confunde com:</span> ${sp.conf}</p>`:""}
+  ${sp.obs?`<p class="${imune?"warn":""}"><span class="k">Atenção:</span> ${sp.obs}</p>`:""}
+  <a class="ext" href="https://www.inaturalist.org/taxa/search?q=${encodeURIComponent(sp.q)}" target="_blank" rel="noopener">Ver fotos no iNaturalist ↗</a>
+  </article>`;
+}
+function render(){
+  const r=SP.filter(match);
+  document.getElementById("cards").innerHTML=r.length?r.map(card).join(""):`<div class="empty">Nenhuma espécie da lista combina com essa seleção. Desmarque o sinal menos seguro ou registre como morfoespécie e colete amostra.</div>`;
+  document.getElementById("count").textContent=`${r.length} de ${SP.length} espécies`;
+}
+document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value.trim();render()});
+document.getElementById("reset").onclick=()=>{["folha","filo","flor","ori","tr"].forEach(k=>state[k].clear());state.q="";document.getElementById("q").value="";kp.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed","false"));render()};
+document.getElementById("nsp").textContent=SP.length;
+
+/* tabela */
+const COLS=[["n","#"],["pop","Nome popular"],["sci","Nome científico"],["fam","Família"],["ori","Origem"],["porte","Porte"],["folha","Folha"],["filo","Filotaxia"],["flor","Flor"],["epoca","Floração"],["obs","Observações"]];
+const rows=SP.map((s,i)=>({n:i+1,pop:s.pop,sci:s.sci+(s.sin?` (sin. ${s.sin})`:""),fam:s.fam,ori:ORI[s.ori],oriK:s.ori,porte:s.porte,folha:s.folha.map(f=>FOLHA[f]).join(" / "),filo:s.filo,flor:FLOR[s.flor],florK:s.flor,epoca:s.m.length?s.m.map(i=>MES[i-1]).join(" "):"—",obs:s.obs}));
+let sortK="n",sortD=1;
+function renderTable(){
+  const th=document.querySelector("#tbl thead tr");
+  th.innerHTML=COLS.map(([k,l])=>`<th data-k="${k}" ${k===sortK?`aria-sort="${sortD>0?"ascending":"descending"}"`:""}>${l}</th>`).join("");
+  th.querySelectorAll("th").forEach(h=>h.onclick=()=>{const k=h.dataset.k;sortD=k===sortK?-sortD:1;sortK=k;renderTable()});
+  const r=[...rows].sort((a,b)=>(typeof a[sortK]==="number"?a[sortK]-b[sortK]:String(a[sortK]).localeCompare(String(b[sortK]),"pt"))*sortD);
+  document.querySelector("#tbl tbody").innerHTML=r.map(x=>`<tr><td class="n">${x.n}</td><td><strong>${x.pop}</strong></td><td class="sci">${x.sci}</td><td>${x.fam}</td><td><span class="tag ori ori-${x.oriK}">${x.ori}</span></td><td>${x.porte}</td><td>${x.folha}</td><td>${x.filo}</td><td><span class="tag"><span class="dot" style="background:var(--f-${x.florK})"></span>${x.flor}</span></td><td style="font-family:var(--mono);font-size:.8rem;white-space:nowrap">${x.epoca}</td><td>${x.obs}</td></tr>`).join("");
+}
+renderTable();
+document.getElementById("copycsv").onclick=async()=>{
+  const esc=v=>`"${String(v).replace(/"/g,'""')}"`;
+  const head=["#","Nome popular","Nome científico","Sinônimo","Família","Origem","Porte","Folha","Filotaxia","Cor da flor","Floração (meses)","Diagnóstico","Confunde com","Observações"];
+  const csv=[head.map(esc).join(";")].concat(SP.map((s,i)=>[i+1,s.pop,s.sci,s.sin,s.fam,ORIL[s.ori],s.porte,s.folha.map(f=>FOLHA[f]).join(" / "),s.filo,FLOR[s.flor],s.m.join(","),s.diag,s.conf,s.obs].map(esc).join(";"))).join("\n");
+  const btn=document.getElementById("copycsv");
+  try{await navigator.clipboard.writeText(csv);btn.textContent="Tabela copiada";setTimeout(()=>btn.textContent="Copiar tabela (CSV)",2200)}
+  catch(e){const ta=document.getElementById("csvfallback");ta.hidden=false;ta.value=csv;ta.focus();ta.select();btn.textContent="Selecione e copie o texto abaixo"}
+};
+
+/* fenologia */
+(function(){
+  const list=SP.filter(s=>s.m.length).map(s=>{const st=s.m.slice().sort((a,b)=>a-b);let first=st[0];if(st.includes(12)&&st.includes(1)){for(let k=12;k>0;k--){if(!st.includes(k)){first=k+1;break}}}return{s,first}}).sort((a,b)=>a.first-b.first||a.s.pop.localeCompare(b.s.pop,"pt"));
+  const t=document.getElementById("phen");
+  t.innerHTML=`<thead><tr><th>Espécie</th>${["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"].map(m=>`<th>${m}</th>`).join("")}</tr></thead><tbody>${list.map(({s})=>`<tr><td>${s.pop.split(",")[0]}</td>${MES.map((_,i)=>{const on=s.m.includes(i+1);return `<td class="m"><div class="bar ${on?"on":""}" style="background:${on?`var(--f-${s.flor})`:"transparent"}"></div></td>`}).join("")}</tr>`).join("")}</tbody>`;
+})();
+
+/* morfologia */
+(function(){
+  const M=[
+    ["simples","Folha simples","Uma só lâmina presa ao pecíolo, com gema na base. Ex.: oiti, ligustro, fícus."],
+    ["bilobada","Simples bilobada","Lâmina única dividida em dois lobos, sem chegar à base. Ex.: patas-de-vaca."],
+    ["peltada","Simples peltada","O pecíolo prende no meio da lâmina, não na borda. Ex.: embaúba."],
+    ["pinada","Composta pinada","Folíolos dispostos ao longo de um eixo (raque), como uma pena. Ex.: aroeiras, tipuana, ingá."],
+    ["bipinada","Composta bipinada","A raque se divide em eixos secundários, cada um com folíolos miúdos. Ex.: sibipiruna, flamboyant, jacarandá."],
+    ["digitada","Composta digitada","Folíolos saem todos do mesmo ponto, como dedos de uma mão. Ex.: ipês, paineira, monguba."],
+    ["trifoliolada","Trifoliolada","Três folíolos. Ex.: mulungu (alterna), pequizeiro (oposta)."],
+    ["bifoliolada","Bifoliolada","Dois folíolos separados até a base. Ex.: jatobá."],
+    ["palmeira","Palmeira","Estipe sem ramificação e folhas grandes no topo. Ex.: jerivá, palmeira-imperial, macaúba."],
+    ["alterna","Folhas alternas","Uma folha por nó, alternando de lado ao longo do ramo. A maioria das Fabaceae."],
+    ["oposta","Folhas opostas","Duas folhas por nó, uma de frente para a outra. Ipês, Myrtaceae, quaresmeira, ligustro."]
+  ];
+  document.getElementById("morph").innerHTML=M.map(([t,h,p])=>`<div class="mcard">${icon(t)}<div style="display:grid;gap:4px;min-width:0"><h3>${h}</h3><p>${p}</p></div></div>`).join("");
+})();
+render();
+
+/* ampliar foto */
+const lb=document.getElementById("lb");
+document.getElementById("cards").addEventListener("click",e=>{
+  const b=e.target.closest(".gal button");if(!b)return;
+  const sp=SP[b.dataset.i],f=FOTOS[b.dataset.i][b.dataset.t],lab=FTIPO.find(x=>x[0]===b.dataset.t)[1];
+  document.getElementById("lbimg").src=f.f;document.getElementById("lbimg").alt=`${sp.pop}: ${lab}`;
+  document.getElementById("lbcap").innerHTML=`<strong>${sp.pop}</strong> · ${lab}<br>${f.a} · <a href="${f.o}" target="_blank" rel="noopener">observação no iNaturalist ↗</a>`;
+  lb.hidden=false;document.getElementById("lbx").focus();
+});
+function closeLb(){lb.hidden=true}
+document.getElementById("lbx").onclick=closeLb;
+lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)closeLb()});
+</script>
