@@ -1,5 +1,7 @@
 # Guia Fotográfico de Árvores de Divinópolis-MG
 
+**Autor:** Victor Lobato dos Santos, biólogo.
+
 Guia de campo para identificar as árvores encontradas em calçadas e canteiros centrais de Divinópolis-MG. Foi feito para apoiar um **censo da arborização viária**, em que cada árvore das vias é registrada.
 
 **Acesse online (funciona no celular):** https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/
@@ -79,4 +81,4 @@ As fotos em `fotos_web/` **não são do autor do guia**. Elas vêm de observaç�
 
 ## Como citar
 
-> Lobatman. *Guia Fotográfico de Árvores de Divinópolis-MG: guia de campo para censo da arborização viária*. 2026. Disponível em: https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/. Licença CC BY-NC 4.0.
+> SANTOS, Victor Lobato dos. *Guia Fotográfico de Árvores de Divinópolis-MG: guia de campo para censo da arborização viária*. 2026. Disponível em: https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/. Licença CC BY-NC 4.0.
