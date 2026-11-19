@@ -39,12 +39,7 @@ O guia escolhe a versão sozinho pela largura da tela. Também é possível esco
 
 ## Limitações
 
-- **Não existe inventário arbóreo publicado para Divinópolis.** A lista foi compilada a partir de:
-  - estudos da Regional Oeste de Minas Gerais;
-  - inventários de arborização viária de outras cidades mineiras;
-  - a flora nativa da Mata Atlântica e do Cerrado da região.
-
-  Espécies fora da lista podem ocorrer.
+- A lista reúne as espécies citadas para a Regional Oeste de MG (Arcos, Divinópolis, Formiga, Itaúna e Pará de Minas), as mais frequentes em inventários viários mineiros e as nativas da região usadas em plantios urbanos. Espere encontrar espécies fora da lista.
 - As épocas de floração são aproximadas e variam entre anos e entre indivíduos.
 - As fotos vêm de identificações da comunidade do iNaturalist e podem conter erros pontuais.
 - Este guia **não substitui** a identificação por especialista nem a consulta a herbários, especialmente para espécies protegidas. O ipê-amarelo e o pequizeiro são imunes de corte em Minas Gerais pela Lei Estadual 20.308/2012.
