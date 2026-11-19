@@ -20,6 +20,16 @@ Guia de campo para identificar as árvores encontradas em calçadas e canteiros 
 | Protocolo do censo | Variáveis da ficha de campo e boas práticas. |
 | Referências | Bibliografia usada. |
 
+## Versões para celular e computador
+
+O guia escolhe a versão sozinho pela largura da tela. Também é possível escolher no seletor **Versão** do cabeçalho, e a escolha fica salva no aparelho.
+
+| Versão | Como fica | Link direto |
+|---|---|---|
+| Celular | Texto maior, botões grandes para o toque, fichas em uma coluna e uma barra fixa “Ver espécies” que leva da chave aos resultados | [?versao=celular](https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/?versao=celular) |
+| Computador | Chave de identificação em duas colunas e fichas em até três colunas | [?versao=computador](https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/?versao=computador) |
+| Automática | Usa a versão celular em telas de até 760 px de largura e a de computador nas maiores | [?versao=auto](https://lobatman.github.io/Levantamento_Arboreo_Divinopolis/?versao=auto) |
+
 ## Como usar em campo
 
 1. Abra o link no navegador do celular e use **Adicionar à tela inicial** para ter um atalho.

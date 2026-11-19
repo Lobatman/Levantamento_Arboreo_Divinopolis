@@ -1,3 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E3826">
+<script>
+/* Escolhe a versão antes de desenhar a página: ?versao=celular|computador, preferência salva, ou automático pela largura da tela */
+(function(){
+  var d=document.documentElement, pref="auto";
+  try{var q=new URLSearchParams(location.search).get("versao");if(q){pref=q==="celular"?"mobile":q==="computador"?"desktop":"auto";localStorage.setItem("guia-versao",pref)}else{pref=localStorage.getItem("guia-versao")||"auto"}}catch(e){}
+  function apply(p){
+    var mode=p==="auto"?(matchMedia("(max-width: 760px)").matches?"mobile":"desktop"):p;
+    d.setAttribute("data-layout",mode);d.setAttribute("data-pref",p);
+    var vp=document.querySelector('meta[name="viewport"]');
+    if(vp)vp.setAttribute("content",mode==="desktop"&&screen.width<760?"width=1180":"width=device-width, initial-scale=1, viewport-fit=cover");
+  }
+  window.guiaVersao=function(p){try{localStorage.setItem("guia-versao",p)}catch(e){}apply(p)};
+  apply(pref);
+  try{matchMedia("(max-width: 760px)").addEventListener("change",function(){if(d.getAttribute("data-pref")==="auto")apply("auto")})}catch(e){}
+})();
+</script>
 <title>Guia Fotográfico de Árvores de Divinópolis</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +54,9 @@
   --o-nr:#86C38A; --o-nb:#8DBEDD; --o-ex:#C9B79C; --o-inv:#F08A78;
   color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:64px}
+img{max-width:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
 .wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--display);text-wrap:balance;line-height:1.15;margin:0}
@@ -153,8 +177,60 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
 .vn{stroke:var(--leaf-ink);stroke-width:.7;fill:none;opacity:.7}
 .trunk{fill:var(--leaf-ink)}
 .frond{stroke:var(--leaf);stroke-width:3;fill:none;stroke-linecap:round}
+/* seletor de versão */
+.versao{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-family:var(--mono);font-size:.78rem;color:var(--band-muted)}
+.versao .seg{display:inline-flex;border:1px solid var(--band-muted);border-radius:6px;overflow:hidden}
+.versao button{background:transparent;color:var(--band-ink);border:0;padding:6px 12px;font-family:var(--body);font-size:.9rem;font-weight:600}
+.versao button+button{border-left:1px solid var(--band-muted)}
+.versao button[aria-pressed="true"]{background:var(--band-ink);color:var(--band)}
+/* barra de resultados: só na versão celular */
+.resbar{display:none}
+:root[data-layout="mobile"] .resbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:8;align-items:center;justify-content:space-between;gap:12px;background:var(--band);color:var(--band-ink);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -2px 10px rgba(0,0,0,.25)}
+:root[data-layout="mobile"] .resbar[hidden]{display:none}
+.resbar span{font-weight:600}
+.resbar button{background:var(--band-ink);color:var(--band);border:0;border-radius:6px;padding:10px 16px;font-weight:700;min-height:44px}
+:root[data-layout="mobile"] footer{padding-bottom:96px}
+/* versão computador: chave em duas colunas para aproveitar a largura */
+:root[data-layout="desktop"] .keypanel{grid-template-columns:1fr 1fr;column-gap:32px}
+:root[data-layout="desktop"] .keypanel .kgroup:nth-child(3){grid-row:span 2}
+/* versão celular: ativada automaticamente em telas estreitas ou pelo seletor de versão */
+  :root[data-layout="mobile"] body{font-size:17px}
+  :root[data-layout="mobile"] header.top .wrap{padding-block:28px 24px}
+  :root[data-layout="mobile"] header.top h1{font-size:2.1rem}
+  :root[data-layout="mobile"] section{padding-block:32px 4px}
+  :root[data-layout="mobile"] nav.tabs a{padding:12px 14px;font-size:1rem}
+  :root[data-layout="mobile"] .keypanel{padding:14px;gap:18px}
+  :root[data-layout="mobile"] .chip{padding:10px 14px;font-size:1rem;min-height:44px}
+  :root[data-layout="mobile"] .chip svg{width:30px;height:30px}
+  :root[data-layout="mobile"] .dot{width:14px;height:14px}
+  :root[data-layout="mobile"] .keybar{flex-direction:column;align-items:stretch}
+  :root[data-layout="mobile"] .keybar input{width:100%;font-size:1rem;padding:12px 14px}
+  :root[data-layout="mobile"] .keybar > div{justify-content:space-between}
+  :root[data-layout="mobile"] .btn{padding:12px 16px;font-size:1rem;min-height:44px}
+  :root[data-layout="mobile"] .cards{grid-template-columns:1fr}
+  :root[data-layout="mobile"] .card{padding:16px;gap:12px}
+  :root[data-layout="mobile"] .card h3{font-size:1.3rem}
+  :root[data-layout="mobile"] .card .sci{font-size:1.02rem}
+  :root[data-layout="mobile"] .card .fam{font-size:.8rem}
+  :root[data-layout="mobile"] .card p{font-size:1rem}
+  :root[data-layout="mobile"] .card .hd{grid-template-columns:64px 1fr}
+  :root[data-layout="mobile"] .card .hd svg{width:64px;height:64px}
+  :root[data-layout="mobile"] .tag{font-size:.82rem;padding:4px 8px}
+  :root[data-layout="mobile"] .gal{gap:8px}
+  :root[data-layout="mobile"] .gal figcaption{font-size:.74rem}
+  :root[data-layout="mobile"] .card a.ext{font-size:1rem;padding-block:6px}
+  :root[data-layout="mobile"] .mcard{grid-template-columns:64px 1fr}
+  :root[data-layout="mobile"] .mcard svg{width:64px;height:64px}
+  :root[data-layout="mobile"] .mcard p,:root[data-layout="mobile"] .box ul,:root[data-layout="mobile"] .refs li{font-size:1rem}
+  :root[data-layout="mobile"] table{font-size:.95rem}
+  :root[data-layout="mobile"] .phen td:first-child{font-size:.92rem}
+  :root[data-layout="mobile"] .lb img{max-height:70vh}
+  :root[data-layout="mobile"] .lb figcaption{font-size:1rem}
+
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}.card:hover{border-color:var(--moss)}}
 </style>
+</head>
+<body>
 
 <header class="top">
   <div class="wrap">
@@ -162,6 +238,7 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
     <h1>Árvores de rua de Divinópolis-MG</h1>
     <p>Espécies esperadas em calçadas e canteiros centrais do município, num contexto de Mata Atlântica (floresta estacional semidecidual) em transição para o Cerrado. Use a chave visual para chegar ao nome a partir do que você vê na árvore.</p>
     <div class="meta"><span><b id="nsp">53</b> espécies ou grupos</span><span><b>Censo</b> · vias laterais e canteiros centrais</span><span>Compilado em <b>nov/2026</b></span></div>
+    <div class="versao" role="group" aria-label="Versão da página"><span>Versão:</span><span class="seg"><button type="button" id="v-auto" data-v="auto">Automática</button><button type="button" id="v-mobile" data-v="mobile">Celular</button><button type="button" id="v-desktop" data-v="desktop">Computador</button></span></div>
   </div>
 </header>
 
@@ -322,6 +399,8 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
     </ol>
   </div>
 </section>
+
+<div class="resbar" id="resbar" hidden><span id="rescount"></span><button type="button" id="resgo">Ver espécies ↓</button></div>
 
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto ampliada"><button class="x" id="lbx" type="button">Fechar</button><figure><img id="lbimg" alt=""><figcaption id="lbcap"></figcaption></figure></div>
 
@@ -527,4 +606,27 @@ function closeLb(){lb.hidden=true}
 document.getElementById("lbx").onclick=closeLb;
 lb.addEventListener("click",e=>{if(e.target===lb)closeLb()});
 document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)closeLb()});
+
+/* seletor de versão */
+function syncVersao(){const p=document.documentElement.getAttribute("data-pref")||"auto";document.querySelectorAll(".versao button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===p))}
+document.querySelectorAll(".versao button").forEach(b=>b.onclick=()=>{window.guiaVersao(b.dataset.v);syncVersao();updateBar()});
+syncVersao();
+
+/* barra de resultados (celular): aparece enquanto a chave está na tela e as fichas ainda estão abaixo */
+const resbar=document.getElementById("resbar"),cardsEl=document.getElementById("cards");
+function updateBar(){
+  if(document.documentElement.getAttribute("data-layout")!=="mobile"){resbar.hidden=true;return}
+  const k=kp.getBoundingClientRect(),c=cardsEl.getBoundingClientRect();
+  resbar.hidden=!(k.bottom>0&&k.top<innerHeight&&c.top>innerHeight-80);
+  document.getElementById("rescount").textContent=document.getElementById("count").textContent;
+}
+document.getElementById("resgo").onclick=()=>cardsEl.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+addEventListener("scroll",updateBar,{passive:true});addEventListener("resize",updateBar);
+kp.addEventListener("click",()=>setTimeout(updateBar,0));
+document.getElementById("q").addEventListener("input",updateBar);
+document.getElementById("reset").addEventListener("click",()=>setTimeout(updateBar,0));
+updateBar();
 </script>
+
+</body>
+</html>
