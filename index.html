@@ -183,6 +183,36 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
 .versao button{background:transparent;color:var(--band-ink);border:0;padding:6px 12px;font-family:var(--body);font-size:.9rem;font-weight:600}
 .versao button+button{border-left:1px solid var(--band-muted)}
 .versao button[aria-pressed="true"]{background:var(--band-ink);color:var(--band)}
+/* identificar por foto */
+.idpanel{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--moss);border-radius:10px;padding:18px;display:grid;gap:14px}
+.idtitle{font-size:1.1rem}
+.idhint,.idnote{font-size:.9rem;color:var(--muted);max-width:72ch}
+.idbtns{display:flex;flex-wrap:wrap;gap:10px}
+.idbtns .btn{cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.btn-main{background:var(--moss);border-color:var(--moss);color:var(--surface)}
+.btn-main:hover{filter:brightness(1.08)}
+.idout{display:grid;grid-template-columns:120px 1fr;gap:14px;align-items:start}
+.idout img{width:120px;height:120px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.idstatus{font-size:.95rem}
+.idres{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.idres li{border:1px solid var(--line);border-radius:6px;padding:10px 12px;display:grid;gap:4px;background:var(--paper)}
+.idres .top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;justify-content:space-between}
+.idres .pct{font-family:var(--mono);font-size:.85rem;font-weight:600}
+.idres .bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.idres .bar span{display:block;height:100%;background:var(--moss)}
+.idres .cn{font-size:.88rem;color:var(--muted)}
+.idres .act{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:2px}
+.idres .fora{font-size:.85rem;color:var(--muted)}
+.idalt{display:grid;gap:8px}
+.idalt a.chip{text-decoration:none;color:inherit}
+:root[data-layout="mobile"] .idout{grid-template-columns:1fr}
+:root[data-layout="mobile"] .idout img{width:100%;height:200px}
+:root[data-layout="mobile"] .idtitle{font-size:1.25rem}
+:root[data-layout="mobile"] .idhint,:root[data-layout="mobile"] .idnote{font-size:1rem}
+:root[data-layout="mobile"] .idbtns .btn{flex:1 1 140px;justify-content:center}
+:root[data-layout="mobile"] .idalt a.chip{min-height:44px}
+
+
 /* barra de resultados: só na versão celular */
 .resbar{display:none}
 :root[data-layout="mobile"] .resbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:8;align-items:center;justify-content:space-between;gap:12px;background:var(--band);color:var(--band-ink);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -2px 10px rgba(0,0,0,.25)}
@@ -262,6 +292,43 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
     </div>
     <div class="note">
       <p>Esta lista reúne as espécies citadas para a Regional Oeste de MG (Arcos, Divinópolis, Formiga, Itaúna e Pará de Minas), as mais frequentes em inventários viários mineiros e as nativas da região usadas em plantios urbanos. Espere encontrar espécies fora da lista.</p>
+    </div>
+    <div class="idpanel" id="idpanel">
+      <div style="display:grid;gap:4px">
+        <span class="label">Identificar por foto · beta</span>
+        <h3 class="idtitle">Fotografe a árvore e veja as espécies mais prováveis</h3>
+        <p class="idhint">Fotografe uma parte de cada vez, de perto e com fundo limpo. Folha e flor dão os melhores resultados. O resultado é uma sugestão: confira sempre pela ficha.</p>
+      </div>
+      <fieldset class="kgroup">
+        <legend class="label">O que aparece na foto?</legend>
+        <div class="chips" id="idorgan">
+          <button type="button" class="chip" data-o="auto" aria-pressed="true"><span>Não sei</span></button>
+          <button type="button" class="chip" data-o="leaf" aria-pressed="false"><span>Folha</span></button>
+          <button type="button" class="chip" data-o="flower" aria-pressed="false"><span>Flor</span></button>
+          <button type="button" class="chip" data-o="fruit" aria-pressed="false"><span>Fruto</span></button>
+          <button type="button" class="chip" data-o="bark" aria-pressed="false"><span>Tronco</span></button>
+        </div>
+      </fieldset>
+      <div class="idbtns">
+        <label class="btn btn-main"><input type="file" accept="image/*" capture="environment" id="idcam" hidden>📷 Tirar foto</label>
+        <label class="btn"><input type="file" accept="image/*" id="idgal" hidden>🖼️ Da galeria</label>
+      </div>
+      <div class="idout" id="idout" aria-live="polite" hidden>
+        <img id="idprev" alt="Foto enviada para identificação">
+        <div style="display:grid;gap:8px;min-width:0">
+          <p class="idstatus" id="idstatus"></p>
+          <ol class="idres" id="idres"></ol>
+        </div>
+      </div>
+      <div class="idalt">
+        <span class="label">Outras ferramentas (abrem fora do guia)</span>
+        <div class="chips">
+          <a class="chip" href="https://lens.google/" target="_blank" rel="noopener">Google Lens ↗</a>
+          <a class="chip" href="https://identify.plantnet.org/pt-br" target="_blank" rel="noopener">Pl@ntNet ↗</a>
+          <a class="chip" href="https://www.inaturalist.org/observations/upload" target="_blank" rel="noopener">iNaturalist ↗</a>
+        </div>
+      </div>
+      <p class="idnote">A foto é enviada ao serviço Pl@ntNet para análise. Evite fotografar pessoas e placas de veículos.</p>
     </div>
     <div class="keypanel" id="keypanel"></div>
     <div class="keybar">
@@ -625,6 +692,87 @@ document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!lb.hidden)closeLb(
 function syncVersao(){const p=document.documentElement.getAttribute("data-pref")||"auto";document.querySelectorAll(".versao button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.v===p))}
 document.querySelectorAll(".versao button").forEach(b=>b.onclick=()=>{window.guiaVersao(b.dataset.v);syncVersao();updateBar()});
 syncVersao();
+
+/* identificar por foto (Pl@ntNet) */
+const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";  // chave da API do Pl@ntNet (my.plantnet.org), restrita ao domínio do guia
+(function(){
+  const out=document.getElementById("idout"),prev=document.getElementById("idprev"),st=document.getElementById("idstatus"),res=document.getElementById("idres");
+  let organ="auto";
+  document.querySelectorAll("#idorgan .chip").forEach(b=>b.onclick=()=>{organ=b.dataset.o;document.querySelectorAll("#idorgan .chip").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+
+  // índice de nomes científicos do guia: binômios (nome aceito e sinônimos) e gêneros "spp."
+  const BI={},GEN={};
+  SP.forEach((sp,i)=>{
+    [[sp.sci,true],[sp.sin,false]].forEach(([txt,principal])=>{
+      let last="";
+      for(const m of (txt||"").matchAll(/\b([A-Z][a-z]+|[A-Z]\.)\s+([a-z][a-z-]+)/g)){
+        const g=m[1].endsWith(".")?last:m[1];if(!g)continue;last=g;
+        if(m[2]==="spp"){if(principal&&!(g.toLowerCase() in GEN))GEN[g.toLowerCase()]=i;continue}
+        const k=(g+" "+m[2]).toLowerCase();if(!(k in BI))BI[k]=i;
+      }
+    });
+    if(!/\s/.test(sp.q)&&!(sp.q.toLowerCase() in GEN))GEN[sp.q.toLowerCase()]=i;
+  });
+  function noGuia(nome){
+    const t=nome.toLowerCase().replace(/×/g," ").replace(/\s+x\s+/g," ").trim().split(/\s+/);
+    if(t.length>1&&(t[0]+" "+t[1]) in BI)return BI[t[0]+" "+t[1]];
+    if(t[0] in GEN)return GEN[t[0]];
+    return -1;
+  }
+  window.guiaNoGuia=noGuia;
+
+  function abrirFicha(i){
+    ["folha","filo","flor","ori","tr"].forEach(k=>state[k].clear());
+    kp.querySelectorAll(".chip").forEach(b=>b.setAttribute("aria-pressed","false"));
+    const q=SP[i].pop.split(",")[0];document.getElementById("q").value=q;state.q=q;render();
+    if(typeof updateBar==="function")setTimeout(updateBar,0);
+    document.getElementById("cards").scrollIntoView({behavior:"smooth"});
+  }
+
+  function reduzir(file){
+    return new Promise((ok,err)=>{
+      const img=new Image(),url=URL.createObjectURL(file);
+      img.onload=()=>{const r=Math.min(1,1280/Math.max(img.width,img.height)),c=document.createElement("canvas");c.width=Math.round(img.width*r);c.height=Math.round(img.height*r);c.getContext("2d").drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);c.toBlob(b=>b?ok(b):err(new Error("imagem")),"image/jpeg",.85)};
+      img.onerror=()=>{URL.revokeObjectURL(url);err(new Error("imagem"))};
+      img.src=url;
+    });
+  }
+
+  function mostrar(r){
+    const lista=(r.results||[]).slice(0,5);
+    if(!lista.length){st.textContent="Nenhuma espécie reconhecida. Tente outra foto, mais de perto, ou use a chave visual.";return}
+    const top=lista[0].score;
+    st.innerHTML=top<.2?"<strong>Confiança baixa.</strong> Tente fotografar outra parte (folha ou flor), de perto. Sugestões:":"Espécies mais prováveis:";
+    res.innerHTML=lista.map(x=>{
+      const s=x.species||{},nome=s.scientificNameWithoutAuthor||"",fam=(s.family&&s.family.scientificNameWithoutAuthor)||"";
+      const cn=(s.commonNames||[]).slice(0,3).join(", "),pct=Math.round(x.score*100),i=noGuia(nome);
+      return `<li><div class="top"><span><em>${nome}</em>${fam?` <span class="fam">· ${fam.toUpperCase()}</span>`:""}</span><span class="pct">${pct}%</span></div>
+      <div class="bar"><span style="width:${Math.max(2,pct)}%"></span></div>
+      ${cn?`<span class="cn">${cn}</span>`:""}
+      <div class="act">${i>=0?`<button type="button" class="btn" data-i="${i}">Abrir ficha: ${SP[i].pop.split(",")[0]}</button>`:`<span class="fora">Fora do guia. Registre como morfoespécie e confira na bibliografia.</span>`}</div></li>`;
+    }).join("");
+    res.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>abrirFicha(+b.dataset.i));
+  }
+
+  async function enviar(file){
+    if(!file)return;
+    out.hidden=false;res.innerHTML="";
+    prev.src=URL.createObjectURL(file);
+    if(!PLANTNET_KEY){st.innerHTML="A identificação automática ainda não foi configurada. Use as ferramentas abaixo ou a chave visual.";return}
+    if(!navigator.onLine){st.textContent="Sem internet. A identificação por foto precisa de conexão.";return}
+    st.textContent="Analisando a foto…";
+    try{
+      const fd=new FormData();fd.append("images",await reduzir(file),"foto.jpg");fd.append("organs",organ);
+      const url=`https://my-api.plantnet.org/v2/identify/all?api-key=${encodeURIComponent(PLANTNET_KEY)}&lang=pt&nb-results=5&include-related-images=false`;
+      const r=await fetch(url,{method:"POST",body:fd});
+      if(r.status===404){mostrar({results:[]});return}
+      if(r.status===429){st.textContent="Limite diário de identificações atingido. Tente amanhã ou use as ferramentas abaixo.";return}
+      if(!r.ok){st.textContent=`Não foi possível identificar agora (erro ${r.status}). Use as ferramentas abaixo.`;return}
+      mostrar(await r.json());
+    }catch(e){st.textContent="Falha na conexão com o Pl@ntNet. Verifique a internet ou use as ferramentas abaixo."}
+  }
+  ["idcam","idgal"].forEach(id=>{const inp=document.getElementById(id);inp.onchange=()=>{enviar(inp.files[0]);inp.value=""}});
+})();
 
 /* barra de resultados (celular): aparece enquanto a chave está na tela e as fichas ainda estão abaixo */
 const resbar=document.getElementById("resbar"),cardsEl=document.getElementById("cards");
