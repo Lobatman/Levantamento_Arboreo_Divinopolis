@@ -13,6 +13,7 @@ Guia de campo para identificar as árvores encontradas em calçadas e canteiros 
 | Seção | O que traz |
 |---|---|
 | Chave visual | Você marca o que observa na árvore e o guia mostra as espécies compatíveis. Os critérios são: tipo de folha, posição das folhas no ramo, sinais marcantes (látex, espinhos, cheiro, tronco, glândulas, anéis), cor da flor e origem. |
+| Identificar por foto | Tira uma foto pela câmera do celular, ou usa uma da galeria, e mostra as espécies mais prováveis segundo o [Pl@ntNet](https://plantnet.org), com link para a ficha quando a espécie está no guia. Traz também atalhos para o Google Lens, o Pl@ntNet e o iNaturalist. |
 | Fichas das espécies | 68 espécies ou grupos. Cada ficha tem fotos sem flor, com flor e com fruto, as características que identificam a espécie, as espécies com que ela costuma ser confundida e alertas de manejo. |
 | Tabela de espécies | Pode ser ordenada pelo cabeçalho e copiada em CSV para planilhas. |
 | Calendário de floração | Épocas aproximadas de floração no Sudeste do Brasil. |
@@ -34,8 +35,9 @@ O guia escolhe a versão sozinho pela largura da tela. Também é possível esco
 
 1. Abra o link no navegador do celular e use **Adicionar à tela inicial** para ter um atalho.
 2. As fotos precisam de internet. Em locais com sinal fraco, abra o guia antes de sair e mantenha a aba aberta.
-3. Na chave visual, marque só as características de que você tem certeza.
-4. Quando a identificação for incerta, registre a árvore como morfoespécie, fotografe, colete uma amostra e confirme depois com bibliografia ou com um especialista.
+3. Para usar **Identificar por foto**, fotografe uma folha ou flor de perto, com fundo limpo, e marque o que aparece na foto. O resultado é uma sugestão: confira sempre pela ficha. A identificação precisa de internet e está limitada a 500 consultas por dia.
+4. Na chave visual, marque só as características de que você tem certeza.
+5. Quando a identificação for incerta, registre a árvore como morfoespécie, fotografe, colete uma amostra e confirme depois com bibliografia ou com um especialista.
 
 ## Limitações
 
@@ -63,6 +65,11 @@ O guia é um arquivo HTML estático e não precisa de instalação. Para usar se
 - GONÇALVES, E. G.; LORENZI, H. *Morfologia vegetal*. 2. ed. Instituto Plantarum, 2011.
 - CEMIG. *Manual de arborização*. CEMIG / Fundação Biodiversitas, 2011.
 - Flora e Funga do Brasil, Jardim Botânico do Rio de Janeiro.
+- Arborização viária de Lavras-MG: florística e uso de espécies nativas. *REVSBAU*.
+- Modalidades de poda avaliadas na arborização viária sob rede elétrica no estado de Minas Gerais. *REVSBAU*.
+- MASCARELLO, A. V. S. Dissertação sobre as árvores em conflito com a rede elétrica na Região Oeste de Belo Horizonte. UFMG, 2017.
+- Prefeitura de Belo Horizonte. Inventário das árvores (SIIA-BH).
+- AFFOUARD, A. et al. Pl@ntNet app in the era of deep learning. *ICLR Workshop*, 2017.
 
 A lista completa, com links, está na seção **Referências** do guia.
 
@@ -82,7 +89,11 @@ O guia (textos, tabela, chave de identificação, ilustrações e código) está
 
 ### Fotos
 
-As fotos em `fotos_web/` **não são do autor do guia**. Elas vêm de observações de grau de pesquisa do [iNaturalist](https://www.inaturalist.org) e continuam com as licenças escolhidas por seus autores: CC0, CC BY, CC BY-SA ou CC BY-NC. A autoria, a licença e o link de cada foto aparecem no guia ao ampliar a imagem. Para reutilizar uma foto, siga a licença dela.
+As fotos em `fotos_web/` **não são do autor do guia**. Elas vêm de observações de grau de pesquisa do [iNaturalist](https://www.inaturalist.org) e continuam com as licenças escolhidas por seus autores: CC0, CC BY, CC BY-SA ou CC BY-NC. A autoria, a licença e o link de cada foto aparecem no guia ao ampliar a imagem, com link direto para a observação original de cada autor. Agradecemos a todos os autores. Para reutilizar uma foto, siga a licença dela.
+
+### Identificação por foto
+
+A identificação automática usa a API do [Pl@ntNet](https://plantnet.org), desenvolvido pelo Cirad, INRAE, Inria e IRD. As fotos enviadas pelo guia vão para os servidores do Pl@ntNet. A chave da API presente no código está restrita ao domínio do guia.
 
 ## Como citar
 
