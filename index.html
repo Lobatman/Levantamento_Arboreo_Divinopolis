@@ -183,6 +183,19 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
 .versao button{background:transparent;color:var(--band-ink);border:0;padding:6px 12px;font-family:var(--body);font-size:.9rem;font-weight:600}
 .versao button+button{border-left:1px solid var(--band-muted)}
 .versao button[aria-pressed="true"]{background:var(--band-ink);color:var(--band)}
+/* gavetas */
+.drawer>summary{list-style:none;cursor:pointer;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:4px 0}
+.drawer>summary::-webkit-details-marker{display:none}
+.drawer-hd{display:grid;gap:8px}
+.drawer-tg{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-weight:600;font-size:.92rem;white-space:nowrap}
+.drawer-tg::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.drawer[open] .drawer-tg::after{transform:translateY(2px) rotate(-135deg)}
+.drawer .cl,.drawer[open] .op{display:none}
+.drawer[open] .cl{display:inline}
+.drawer>summary:hover .drawer-tg{border-color:var(--moss)}
+.drawer>summary:focus-visible{outline:2px solid var(--moss);outline-offset:4px;border-radius:6px}
+.drawer-body{display:grid;gap:16px;margin-top:16px}
+:root[data-layout="mobile"] .drawer-tg{min-height:44px;font-size:1rem}
 /* identificar por foto */
 .idpanel{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--moss);border-radius:10px;padding:18px;display:grid;gap:14px}
 .idtitle{font-size:1.1rem}
@@ -344,9 +357,10 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
 
 <section id="tabela">
   <div class="wrap">
+    <details class="drawer" id="d-tabela">
+    <summary><span class="drawer-hd"><span class="label">Lista de referência</span><h2>Tabela de espécies</h2></span><span class="drawer-tg" aria-hidden="true"><span class="op">Abrir</span><span class="cl">Recolher</span></span></summary>
+    <div class="drawer-body">
     <div style="display:grid;gap:8px">
-      <span class="label">Lista de referência</span>
-      <h2>Tabela de espécies</h2>
       <p class="lede">Clique no cabeçalho para ordenar. O botão copia a tabela separada por ponto e vírgula, pronta para colar no Excel ou na planilha de campo.</p>
     </div>
     <div class="keybar">
@@ -361,17 +375,22 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
     </div>
     <textarea id="csvfallback" hidden readonly style="width:100%;height:160px;font-family:var(--mono);font-size:.8rem;background:var(--surface);color:var(--ink);border:1px solid var(--line)"></textarea>
     <div class="tablebox"><table id="tbl"><thead><tr></tr></thead><tbody></tbody></table></div>
+    </div>
+    </details>
   </div>
 </section>
 
 <section id="fenologia">
   <div class="wrap">
+    <details class="drawer" id="d-fenologia">
+    <summary><span class="drawer-hd"><span class="label">Fenologia aproximada · Sudeste do Brasil</span><h2>Calendário de floração</h2></span><span class="drawer-tg" aria-hidden="true"><span class="op">Abrir</span><span class="cl">Recolher</span></span></summary>
+    <div class="drawer-body">
     <div style="display:grid;gap:8px">
-      <span class="label">Fenologia aproximada · Sudeste do Brasil</span>
-      <h2>Calendário de floração</h2>
       <p class="lede">A floração resolve muitas dúvidas: na mesma rua, o ipê-roxo floresce antes do ipê-amarelo, e a sibipiruna (primavera) antes da canafístula (verão). As épocas variam de um ano para outro e entre indivíduos, então use como indicação.</p>
     </div>
     <div class="tablebox"><table class="phen" id="phen"></table></div>
+    </div>
+    </details>
   </div>
 </section>
 
@@ -442,10 +461,9 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
 
 <section id="referencias">
   <div class="wrap">
-    <div style="display:grid;gap:8px">
-      <span class="label">Bibliografia</span>
-      <h2>Referências</h2>
-    </div>
+    <details class="drawer" id="d-referencias">
+    <summary><span class="drawer-hd"><span class="label">Bibliografia</span><h2>Referências</h2></span><span class="drawer-tg" aria-hidden="true"><span class="op">Abrir</span><span class="cl">Recolher</span></span></summary>
+    <div class="drawer-body">
     <ol class="refs">
       <li>Diagnóstico da arborização viária sob a rede elétrica na Regional Oeste de Minas Gerais (Arcos, Divinópolis, Formiga, Itaúna e Pará de Minas). <em>Pesquisa Florestal Brasileira</em> (Embrapa). Espécies mais frequentes: sibipiruna, ligustro, champaca e aroeira-salsa. <a href="https://pfb.sede.embrapa.br/pfb/article/download/749/464" target="_blank" rel="noopener">pfb.sede.embrapa.br</a></li>
       <li>Câmara Municipal de Divinópolis. Requerimento 824/2025 e resposta da Secretaria de Meio Ambiente sobre cobertura vegetal e ausência de Plano de Arborização. <a href="https://sapl.divinopolis.mg.leg.br/media/sapl/public/materialegislativa/2025/41793/requerimento_824_2025.pdf" target="_blank" rel="noopener">sapl.divinopolis.mg.leg.br</a> · <a href="https://sapl.divinopolis.mg.leg.br/docadm/texto_integral/3196" target="_blank" rel="noopener">ofício</a></li>
@@ -471,6 +489,8 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
       <li>Pl@ntNet. Identificação automática de plantas por imagem usada no painel “Identificar por foto” (API Pl@ntNet, Cirad, INRAE, Inria e IRD). AFFOUARD, A.; GOËAU, H.; BONNET, P.; LOMBARDO, J.-C.; JOLY, A. Pl@ntNet app in the era of deep learning. <em>ICLR Workshop</em>, 2017. <a href="https://plantnet.org" target="_blank" rel="noopener">plantnet.org</a> · <a href="https://my.plantnet.org" target="_blank" rel="noopener">my.plantnet.org</a></li>
       <li>EMBRAPA. Manual para elaboração do Plano Municipal de Arborização Urbana. <a href="https://www.infoteca.cnptia.embrapa.br/infoteca/bitstream/doc/942537/1/2013SergioAManualPMARB.pdf" target="_blank" rel="noopener">infoteca.cnptia.embrapa.br</a></li>
     </ol>
+    </div>
+    </details>
   </div>
 </section>
 
@@ -701,6 +721,11 @@ function syncVersao(){const p=document.documentElement.getAttribute("data-pref")
 document.querySelectorAll(".versao button").forEach(b=>b.onclick=()=>{window.guiaVersao(b.dataset.v);syncVersao();updateBar()});
 syncVersao();
 
+/* gavetas: abrir ao navegar para a seção */
+function abrirGaveta(id){const d=document.getElementById("d-"+id);if(d&&!d.open)d.open=true}
+document.querySelectorAll('a[href="#tabela"],a[href="#fenologia"],a[href="#referencias"]').forEach(a=>a.addEventListener("click",()=>abrirGaveta(a.getAttribute("href").slice(1))));
+addEventListener("hashchange",()=>abrirGaveta(location.hash.slice(1)));
+if(location.hash)abrirGaveta(location.hash.slice(1));
 /* identificar por foto (Pl@ntNet) */
 const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";  // chave da API do Pl@ntNet (my.plantnet.org), restrita ao domínio do guia
 (function(){
