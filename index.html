@@ -341,7 +341,7 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
           <a class="chip" href="https://www.inaturalist.org/observations/upload" target="_blank" rel="noopener">iNaturalist ↗</a>
         </div>
       </div>
-      <p class="idnote">Identificação feita pelo <a href="https://plantnet.org" target="_blank" rel="noopener">Pl@ntNet</a> (Cirad, INRAE, Inria e IRD). A foto é enviada ao serviço para análise. Evite fotografar pessoas e placas de veículos. As espécies sugeridas e a porcentagem (sem a foto, sem nome e sem localização) são registradas anonimamente para atualizar o guia.</p>
+      <p class="idnote">Identificação feita pelo <a href="https://plantnet.org" target="_blank" rel="noopener">Pl@ntNet</a> (Cirad, INRAE, Inria e IRD). A foto é enviada ao serviço para análise. Evite fotografar pessoas e placas de veículos. As espécies sugeridas, a porcentagem e a cidade (sem a foto, sem nome e sem coordenadas) são registradas anonimamente para atualizar o guia. A localização é usada só para descobrir a cidade e pode ser recusada.</p>
     </div>
     <div class="keypanel" id="keypanel"></div>
     <div class="keybar">
@@ -791,11 +791,20 @@ const REGISTRO_TOKEN="guia-divinopolis";  // chave da API do Pl@ntNet (my.plantn
 
   // registro anônimo na planilha (sem foto, sem nome, sem localização)
   const ORG={auto:"Não sei",leaf:"Folha",flower:"Flor",fruit:"Fruto",bark:"Tronco"};
-  function registrar(r){
+  // localização só para descobrir a cidade: arredondada (~1 km) e nunca gravada na planilha
+  function posicao(){
+    return new Promise(ok=>{
+      if(!navigator.geolocation)return ok(null);
+      const t=setTimeout(()=>ok(null),10000);
+      navigator.geolocation.getCurrentPosition(p=>{clearTimeout(t);ok({lat:Math.round(p.coords.latitude*100)/100,lon:Math.round(p.coords.longitude*100)/100})},()=>{clearTimeout(t);ok(null)},{enableHighAccuracy:false,maximumAge:600000,timeout:9000});
+    });
+  }
+  async function registrar(r,pos){
     if(!REGISTRO_URL)return;
     const lista=(r.results||[]).slice(0,3).map(x=>{const s=x.species||{};return{nome:s.scientificNameWithoutAuthor||"",familia:(s.family&&s.family.scientificNameWithoutAuthor)||"",score:Math.round(x.score*1000)/1000,popular:(s.commonNames||[])[0]||""}});
     if(!lista.length)return;
-    const corpo=JSON.stringify({token:REGISTRO_TOKEN,orgao:ORG[organ]||organ,noGuia:noGuia(lista[0].nome)>=0,res:lista});
+    const loc=await pos;
+    const corpo=JSON.stringify({token:REGISTRO_TOKEN,orgao:ORG[organ]||organ,noGuia:noGuia(lista[0].nome)>=0,res:lista,lat:loc?loc.lat:null,lon:loc?loc.lon:null});
     try{fetch(REGISTRO_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:corpo}).catch(()=>{})}catch(e){}
   }
 
@@ -806,6 +815,7 @@ const REGISTRO_TOKEN="guia-divinopolis";  // chave da API do Pl@ntNet (my.plantn
     if(!PLANTNET_KEY){st.innerHTML="A identificação automática ainda não foi configurada. Use as ferramentas abaixo ou a chave visual.";return}
     if(!navigator.onLine){st.textContent="Sem internet. A identificação por foto precisa de conexão.";return}
     st.textContent="Analisando a foto…";
+    const pos=REGISTRO_URL?posicao():null;
     try{
       const fd=new FormData();fd.append("images",await reduzir(file),"foto.jpg");fd.append("organs",organ);
       const url=`https://my-api.plantnet.org/v2/identify/all?api-key=${encodeURIComponent(PLANTNET_KEY)}&lang=pt&nb-results=5&include-related-images=false`;
@@ -813,7 +823,7 @@ const REGISTRO_TOKEN="guia-divinopolis";  // chave da API do Pl@ntNet (my.plantn
       if(r.status===404){mostrar({results:[]});return}
       if(r.status===429){st.textContent="Limite diário de identificações atingido. Tente amanhã ou use as ferramentas abaixo.";return}
       if(!r.ok){st.textContent=`Não foi possível identificar agora (erro ${r.status}). Use as ferramentas abaixo.`;return}
-      const dados=await r.json();mostrar(dados);registrar(dados);
+      const dados=await r.json();mostrar(dados);registrar(dados,pos);
     }catch(e){st.textContent="Falha na conexão com o Pl@ntNet. Verifique a internet ou use as ferramentas abaixo."}
   }
   ["idcam","idgal"].forEach(id=>{const inp=document.getElementById(id);inp.onchange=()=>{enviar(inp.files[0]);inp.value=""}});
