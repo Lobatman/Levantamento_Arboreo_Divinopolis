@@ -341,7 +341,7 @@ footer{padding-block:40px;color:var(--muted);font-size:.85rem}
           <a class="chip" href="https://www.inaturalist.org/observations/upload" target="_blank" rel="noopener">iNaturalist ↗</a>
         </div>
       </div>
-      <p class="idnote">Identificação feita pelo <a href="https://plantnet.org" target="_blank" rel="noopener">Pl@ntNet</a> (Cirad, INRAE, Inria e IRD). A foto é enviada ao serviço para análise. Evite fotografar pessoas e placas de veículos.</p>
+      <p class="idnote">Identificação feita pelo <a href="https://plantnet.org" target="_blank" rel="noopener">Pl@ntNet</a> (Cirad, INRAE, Inria e IRD). A foto é enviada ao serviço para análise. Evite fotografar pessoas e placas de veículos. As espécies sugeridas e a porcentagem (sem a foto, sem nome e sem localização) são registradas anonimamente para atualizar o guia.</p>
     </div>
     <div class="keypanel" id="keypanel"></div>
     <div class="keybar">
@@ -727,7 +727,9 @@ document.querySelectorAll('a[href="#tabela"],a[href="#fenologia"],a[href="#refer
 addEventListener("hashchange",()=>abrirGaveta(location.hash.slice(1)));
 if(location.hash)abrirGaveta(location.hash.slice(1));
 /* identificar por foto (Pl@ntNet) */
-const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";  // chave da API do Pl@ntNet (my.plantnet.org), restrita ao domínio do guia
+const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";
+const REGISTRO_URL="https://script.google.com/macros/s/AKfycbwuk6R18tckvhKO5xmlmUKS79TsuZZ9d2d947sk2OblxZF1cMwFukhMFUFkvG43ELdc/exec";  // planilha de retroalimentação (anônima)
+const REGISTRO_TOKEN="guia-divinopolis";  // chave da API do Pl@ntNet (my.plantnet.org), restrita ao domínio do guia
 (function(){
   const out=document.getElementById("idout"),prev=document.getElementById("idprev"),st=document.getElementById("idstatus"),res=document.getElementById("idres");
   let organ="auto";
@@ -787,6 +789,16 @@ const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";  // chave da API do Pl@ntNet (m
     res.querySelectorAll("button[data-i]").forEach(b=>b.onclick=()=>abrirFicha(+b.dataset.i));
   }
 
+  // registro anônimo na planilha (sem foto, sem nome, sem localização)
+  const ORG={auto:"Não sei",leaf:"Folha",flower:"Flor",fruit:"Fruto",bark:"Tronco"};
+  function registrar(r){
+    if(!REGISTRO_URL)return;
+    const lista=(r.results||[]).slice(0,3).map(x=>{const s=x.species||{};return{nome:s.scientificNameWithoutAuthor||"",familia:(s.family&&s.family.scientificNameWithoutAuthor)||"",score:Math.round(x.score*1000)/1000,popular:(s.commonNames||[])[0]||""}});
+    if(!lista.length)return;
+    const corpo=JSON.stringify({token:REGISTRO_TOKEN,orgao:ORG[organ]||organ,noGuia:noGuia(lista[0].nome)>=0,res:lista});
+    try{fetch(REGISTRO_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:corpo}).catch(()=>{})}catch(e){}
+  }
+
   async function enviar(file){
     if(!file)return;
     out.hidden=false;res.innerHTML="";
@@ -801,7 +813,7 @@ const PLANTNET_KEY="2b10Jz0aQ6gJ7J3bNVNB3wmABu";  // chave da API do Pl@ntNet (m
       if(r.status===404){mostrar({results:[]});return}
       if(r.status===429){st.textContent="Limite diário de identificações atingido. Tente amanhã ou use as ferramentas abaixo.";return}
       if(!r.ok){st.textContent=`Não foi possível identificar agora (erro ${r.status}). Use as ferramentas abaixo.`;return}
-      mostrar(await r.json());
+      const dados=await r.json();mostrar(dados);registrar(dados);
     }catch(e){st.textContent="Falha na conexão com o Pl@ntNet. Verifique a internet ou use as ferramentas abaixo."}
   }
   ["idcam","idgal"].forEach(id=>{const inp=document.getElementById(id);inp.onchange=()=>{enviar(inp.files[0]);inp.value=""}});
