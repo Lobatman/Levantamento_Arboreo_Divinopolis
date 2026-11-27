@@ -14,7 +14,7 @@ Guia de campo para identificar as árvores encontradas em calçadas e canteiros 
 |---|---|
 | Chave visual | Você marca o que observa na árvore e o guia mostra as espécies compatíveis. Os critérios são: tipo de folha, posição das folhas no ramo, sinais marcantes (látex, espinhos, cheiro, tronco, glândulas, anéis), cor da flor e origem. |
 | Identificar por foto | Tira uma foto pela câmera do celular, ou usa uma da galeria, e mostra as espécies mais prováveis segundo o [Pl@ntNet](https://plantnet.org), com link para a ficha quando a espécie está no guia. Traz também atalhos para o Google Lens, o Pl@ntNet e o iNaturalist. |
-| Fichas das espécies | 68 espécies ou grupos. Cada ficha tem fotos sem flor, com flor e com fruto, as características que identificam a espécie, as espécies com que ela costuma ser confundida e alertas de manejo. |
+| Fichas das espécies | 77 espécies ou grupos. Cada ficha tem fotos sem flor, com flor e com fruto, as características que identificam a espécie, as espécies com que ela costuma ser confundida e alertas de manejo. |
 | Tabela de espécies | Pode ser ordenada pelo cabeçalho e copiada em CSV para planilhas. |
 | Calendário de floração | Épocas aproximadas de floração no Sudeste do Brasil. |
 | Como ler a folha | Ilustrações dos tipos de folha e um roteiro de identificação em campo. |
@@ -50,7 +50,7 @@ O guia escolhe a versão sozinho pela largura da tela. Também é possível esco
 
 ```
 index.html    guia completo (HTML, CSS e JavaScript em um único arquivo)
-fotos_web/    198 fotos comprimidas (folha/planta, flor, fruto)
+fotos_web/    219 fotos comprimidas (folha/planta, flor, fruto)
 README.md     este arquivo
 LICENSE       termos de uso
 ```
